@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MazeGeneratorLib;
 using MazeLib;
+using MazeGeneratorLib;
 
-namespace AdvancedPrograming2
+namespace MVC
 {
-    class Program
+    public interface IModel
     {
-        static void Main(string[] args)
-        {
-            
-        }
+       Maze GenerateMaze(string name, int rows, int cols);
     }
 }

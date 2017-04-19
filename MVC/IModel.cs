@@ -11,10 +11,10 @@ namespace MVC
     public interface IModel
     {
         Maze GenerateMaze(string name, int rows, int cols);
-        void Solve(string name, int algoritem);
-        void Start(string name, int rows, int cols);
+        string Solve(string name, int algoritem);
+        string Start(string name, int rows, int cols);
         List<string> NameOfGames();
-        void Join(string name);
+        string Join(string name);
         void Play(string move);
         void Close(string name);
     }

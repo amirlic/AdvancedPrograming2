@@ -12,8 +12,8 @@ namespace MVC
 {
     class StartCommand : ICommand
     {
-        private IModel model;
-        public StartCommand(IModel model)
+        private Model model;
+        public StartCommand(Model model)
         {
             this.model = model;
         }
@@ -22,8 +22,9 @@ namespace MVC
             string name = args[0];
             int rows = int.Parse(args[1]);
             int cols = int.Parse(args[2]);
-            model.Start(name, rows, cols);
-            return model.m
+            string result = model.Start(name, rows, cols);
+            model.AddPlayer(name, client);
+            return result;
         }
     }
 }

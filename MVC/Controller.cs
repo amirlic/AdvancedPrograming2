@@ -12,12 +12,16 @@ namespace MVC
     class Controller
     {
         private Dictionary<string, ICommand> commands;
-        private IModel model;
+        private Model model;
+        private Dictionary<string, List<TcpClient>> playersInMazeList;
+
         public Controller()
         {
             model = new Model();
+            playersInMazeList = new Dictionary<string, List<TcpClient>>();
             commands = new Dictionary<string, ICommand>();
             commands.Add("generate", new GenerateMazeCommand(model));
+            commands.Add("list", new GenerateMazeCommand(model));
             // more commands...
         }
         public string ExecuteCommand(string commandLine, TcpClient client)
@@ -28,7 +32,8 @@ namespace MVC
                 return "Command not found";
             string[] args = arr.Skip(1).ToArray();
             ICommand command = commands[commandKey];
-            return command.Execute(args, client);
+            string result = command.Execute(args, client);
+            return result;
         }
     }
 }

@@ -18,10 +18,13 @@ namespace MVC
         public Controller()
         {
             model = new Model();
-            playersInMazeList = new Dictionary<string, List<TcpClient>>();
             commands = new Dictionary<string, ICommand>();
             commands.Add("generate", new GenerateMazeCommand(model));
-            commands.Add("list", new GenerateMazeCommand(model));
+            commands.Add("list", new ListCommand(model));
+            commands.Add("start", new StartCommand(model));
+            commands.Add("join", new JoinCommand(model));
+            commands.Add("play", new ListCommand(model));
+            commands.Add("cose", new ListCommand(model));
             // more commands...
         }
         public string ExecuteCommand(string commandLine, TcpClient client)

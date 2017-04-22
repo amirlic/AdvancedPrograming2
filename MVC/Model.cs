@@ -11,15 +11,17 @@ namespace MVC
 {
     class Model : IModel
     {
+        private Dictionary<string, MultiplayerGame> multiGames;
+        private Dictionary<string, MultiplayerGame> multiGamesArePlayed;
         private Dictionary<string, Maze> singleplayerMazeList;
-        private Dictionary<string, Maze> multiplayerMazeList;
 
         private Dictionary<string, List<TcpClient>> playersInMaze;
 
         public Model()
         {
             singleplayerMazeList = new Dictionary<string, Maze>();
-            multiplayerMazeList = new Dictionary<string, Maze>();
+            multiGames = new Dictionary<string, MultiplayerGame>();
+            multiGamesArePlayed = new Dictionary<string, MultiplayerGame>();
             playersInMaze = new Dictionary<string, List<TcpClient>>();
         }
 
@@ -38,28 +40,38 @@ namespace MVC
         public string Start(string name, int rows, int cols)
         {
             Maze maze = GenerateMaze(name, rows, cols);
-            multiplayerMazeList.Add(name, maze);
+            MultiplayerGame game = new MultiplayerGame();
+            game.AddMaze(maze);
+            multiGames.Add(name, game);
             return name;
         }
 
-        public List<string> NameOfGames() { return null; }
+        public List<string> NameOfGames()
+        {
+            return null;
+        }
 
         public string Join(string name) {
-            Maze maze = multiplayerMazeList[name];
-            return name;
+            MultiplayerGame game = multiGames[name];
+
+            multiGames.Remove(name);
+            multiGamesArePlayed.Add(name, game);
+            return name;/////TODO JSON
         }
 
         public void Play(string move) { }
 
         public void Close(string name) { }
 
-        public Dictionary<string, Maze> getMultiplayerMazes()
+        public Dictionary<string, MultiplayerGame> getMultiplayerGames()
         {
-            return multiplayerMazeList;
+            return multiGames;
         }
 
-        public void AddPlayer(string mazeName, TcpClient client)
+        public void ConnectToGame(string mazeName, TcpClient client)
         {
+            multiGames[mazeName].AddPlayer(client);
+            /*
             List<TcpClient> players = playersInMaze[mazeName];
             if (players != null)
             {
@@ -69,7 +81,7 @@ namespace MVC
                 List<TcpClient> playerList = new List<TcpClient>();
                 playerList.Add(client);
                 playersInMaze.Add(mazeName, playerList);
-            }
+            }*/
         }
     }
 }

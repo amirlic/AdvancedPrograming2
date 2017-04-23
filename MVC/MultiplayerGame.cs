@@ -9,7 +9,7 @@ using System.Net.Sockets;
 
 namespace MVC
 {
-    class MultiplayerGame : IGame
+    public class MultiplayerGame : IGame
     {
         private TcpClient player1;
         private TcpClient player2;
@@ -47,9 +47,9 @@ namespace MVC
             return this.player2;
         }
 
-        public string GetMaze()
+        public Maze GetMaze()
         {
-            return this.maze.Name;
+            return this.maze;
         }
     }
 }

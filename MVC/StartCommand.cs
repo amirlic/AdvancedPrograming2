@@ -12,8 +12,8 @@ namespace MVC
 {
     class StartCommand : ICommand
     {
-        private Model model;
-        public StartCommand(Model model)
+        private IModel model;
+        public StartCommand(IModel model)
         {
             this.model = model;
         }
@@ -22,9 +22,10 @@ namespace MVC
             string name = args[0];
             int rows = int.Parse(args[1]);
             int cols = int.Parse(args[2]);
-            string result = model.Start(name, rows, cols);
+            MultiplayerGame game = model.Start(name, rows, cols);
             model.ConnectToGame(name, client);
-            return result;
+            Maze maze = game.GetMaze();
+            return maze.ToJSON();
         }
     }
 }

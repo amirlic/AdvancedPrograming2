@@ -9,7 +9,7 @@ using System.Net.Sockets;
 
 namespace MVC
 {
-    class Model : IModel
+    public class Model : IModel
     {
         private Dictionary<string, MultiplayerGame> multiGames;
         private Dictionary<string, MultiplayerGame> multiGamesArePlayed;
@@ -37,13 +37,13 @@ namespace MVC
 
             
         }
-        public string Start(string name, int rows, int cols)
+        public MultiplayerGame Start(string name, int rows, int cols)
         {
             Maze maze = GenerateMaze(name, rows, cols);
             MultiplayerGame game = new MultiplayerGame();
             game.AddMaze(maze);
             multiGames.Add(name, game);
-            return name;
+            return game;
         }
 
         public List<string> NameOfGames()

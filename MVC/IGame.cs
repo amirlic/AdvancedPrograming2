@@ -18,6 +18,6 @@ namespace MVC
 
         TcpClient GetPlayer();
 
-        string GetMaze();
+        Maze GetMaze();
     }
 }

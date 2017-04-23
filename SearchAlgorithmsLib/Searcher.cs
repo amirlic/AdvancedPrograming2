@@ -15,8 +15,21 @@ namespace SearchAlgorithmsLib
             openList = new SimplePriorityQueue<MazeState<T>>();
             evaluatedNodes = 0;
         }
-        protected MazeState<T> popOpenList() {
-            evaluatedNodes++;
+        public void AddToOpenList(MazeState<T> state,double cost) {
+            this.openList.Enqueue(state,(float)cost);
+        }
+        /// <summary>
+        /// returns whether or not an object is contained within the open list
+        /// </summary>
+        /// <param name="obj">the object to look if is in the open list</param>
+        /// <returns>bool</returns>
+        public bool IsContaining(MazeState<T> obj)
+        {
+            return this.openList.Contains(obj);
+        }
+
+        protected MazeState<T> PopOpenList() {
+            ++this.evaluatedNodes;
             //return openList.poll;
             return openList.First();
         }
@@ -29,9 +42,59 @@ namespace SearchAlgorithmsLib
             }
         }
         // ISearcher’s methods:
-        public int getNumberOfNodesEvaluated() {
-            return evaluatedNodes;
+        public int GetNumberOfNodesEvaluated() {
+            return this.evaluatedNodes;
         }
-        public abstract Solution<T> search(ISearchable<T> searchable);
+
+        /// <summary>
+        /// increases the number of evaluated nodes by 1
+        /// </summary>
+        public void IncNumberOfNodesEvaluated()
+        {
+            ++this.evaluatedNodes;
+        }
+        /// <summary>
+        /// increases the number of evaluated nodes by N
+        /// </summary>
+        /// <param name="N"></param>
+        public void IncNumberOfNodesEvaluatedByN(int N)
+        {
+            this.evaluatedNodes += N;
+        }
+
+
+        /// <summary>
+        /// this function changes the priority of a member of the open list
+        /// </summary>
+        /// <param name="stat">the maze state to change the priority of</param>
+        /// <param name="prio">the new priority of ther maze state</param>
+        public void ChangeMemberPriority(MazeState<T> stat, double prio)
+        {
+            //changing the priority in the maze state it self
+            stat.SetCost(prio);
+            //updating the open list according trho the new priority of stat
+            openList.UpdatePriority(stat, (float)prio);
+        }
+
+        
+
+
+
+        public Solution<T> BackTrace(MazeState<T> current)
+        {
+            Solution<T> sol = new Solution<T>();
+            sol.AddState(current);
+
+            while(current.CameFrom() != null)
+            {
+                sol.AddState(current.CameFrom());
+                current = current.CameFrom();
+            }
+
+            return sol;
+
+        }
+
+        public abstract Solution<T> Search(ISearchable<T> searchable);
     }
 }

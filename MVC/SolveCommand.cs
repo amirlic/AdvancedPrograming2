@@ -11,7 +11,7 @@ using SearchAlgorithmsLib;
 
 namespace MVC
 {
-    class SolveCommand<T> : ICommand
+    class SolveCommand : ICommand
     {
         private IModel model;
         public SolveCommand(IModel model)
@@ -22,9 +22,8 @@ namespace MVC
         {
             string name = args[0];
             int algoritem = int.Parse(args[1]);
-            Solution<T> sol = model.Solve(name, algoritem);
-            model.ConnectToGame(name, client);
-            Maze maze = game.GetMaze();
+            Adapter maze = model.Solve(name, algoritem);
+            Solution<Position> sol = maze.GetSolution();
             return maze.ToJSON();
         }
     }

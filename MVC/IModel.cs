@@ -11,10 +11,10 @@ using SearchAlgorithmsLib;
 
 namespace MVC
 {
-    public interface IModel<T>
+    public interface IModel
     {
         Maze GenerateMaze(string name, int rows, int cols);
-        Solution<T> Solve(string name, int algoritem);
+        Adapter Solve(string name, int algoritem);
         MultiPlayerGame Start(string name, int rows, int cols);
         List<string> NameOfGames();
         MultiPlayerGame Join(string name);

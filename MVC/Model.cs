@@ -11,15 +11,17 @@ using SearchAlgorithmsLib;
 
 namespace MVC
 {
-    public class Model<T> : IModel<T>
+    public class Model : IModel
     {
         private Dictionary<string, MultiPlayerGame> multiGames;
         private Dictionary<string, MultiPlayerGame> multiGamesArePlayed;
-        private Dictionary<string, Maze> singleGames;
+        private Dictionary<string, SinglePlayerGame> singleGames;
+        private Dictionary<string, SinglePlayerGame> singleGamesArePlayed;
 
         public Model()
         {
-            singleGames = new Dictionary<string, Maze>();
+            singleGames = new Dictionary<string, SinglePlayerGame>();
+            singleGamesArePlayed = new Dictionary<string, SinglePlayerGame>();
             multiGames = new Dictionary<string, MultiPlayerGame>();
             multiGamesArePlayed = new Dictionary<string, MultiPlayerGame>();
         }
@@ -28,21 +30,37 @@ namespace MVC
         {
             DFSMazeGenerator mazeGenerator = new DFSMazeGenerator();
             Maze maze = mazeGenerator.Generate(rows, cols);
+            SinglePlayerGame game = new SinglePlayerGame();
+            game.AddMaze(maze);
+            singleGames.Add(name, game);
             return maze;
         }
-        public Solution<T> Solve(string name, int algoritem)
+        public Adapter Solve(string name, int algoritem)
         {
+            Adapter maze = new Adapter(singleGames[name].GetMaze());
+            SinglePlayerGame game = singleGames[name];
+            singleGames.Remove(name);
+            singleGamesArePlayed.Add(name, game);
             switch (algoritem)
             {
                 case 0:
                     {
+                        BFS<Position> bfs = new BFS<Position>();
+                        Solution<Position> sol = bfs.Search(maze);
+                        int num = bfs.GetNumberOfNodesEvaluated();
+                        maze.AddSolution(sol);
                         break;
                     }
                 case 1:
                     {
+                        DFS<Position> dfs = new DFS<Position>();
+                        Solution<Position> sol = dfs.Search(maze);
+                        int num = dfs.GetNumberOfNodesEvaluated();
+                        maze.AddSolution(sol);
                         break;
                     }
             }
+            return maze;
         }
         public MultiPlayerGame Start(string name, int rows, int cols)
         {

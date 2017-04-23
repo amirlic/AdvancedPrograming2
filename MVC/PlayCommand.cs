@@ -10,10 +10,10 @@ using Newtonsoft.Json.Linq;
 
 namespace MVC
 {
-    class StartCommand : ICommand
+    class PlayCommand : ICommand
     {
         private IModel model;
-        public StartCommand(IModel model)
+        public PlayCommand(IModel model)
         {
             this.model = model;
         }

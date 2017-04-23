@@ -12,8 +12,7 @@ namespace MVC
     class Controller
     {
         private Dictionary<string, ICommand> commands;
-        private Model model;
-        private Dictionary<string, List<TcpClient>> playersInMazeList;
+        private IModel model;
 
         public Controller()
         {
@@ -22,9 +21,10 @@ namespace MVC
             commands.Add("generate", new GenerateMazeCommand(model));
             commands.Add("list", new ListCommand(model));
             commands.Add("start", new StartCommand(model));
+            commands.Add("solve", new SolveCommand(model));
             commands.Add("join", new JoinCommand(model));
-            commands.Add("play", new ListCommand(model));
-            commands.Add("cose", new ListCommand(model));
+            commands.Add("play", new PlayCommand(model));
+            commands.Add("close", new CloseCommand(model));
             // more commands...
         }
         public string ExecuteCommand(string commandLine, TcpClient client)

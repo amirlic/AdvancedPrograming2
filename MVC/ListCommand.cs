@@ -13,8 +13,8 @@ namespace MVC
 {
     class ListCommand : ICommand
     {
-        private Model model;
-        public ListCommand(Model model)
+        private IModel model;
+        public ListCommand(IModel model)
         {
             this.model = model;
         }

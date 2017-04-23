@@ -6,20 +6,22 @@ using System.Threading.Tasks;
 using MazeLib;
 using MazeGeneratorLib;
 using System.Net.Sockets;
+using SearchAlgorithmsLib;
+
 
 namespace MVC
 {
-    public class Model : IModel
+    public class Model<T> : IModel<T>
     {
-        private Dictionary<string, MultiplayerGame> multiGames;
-        private Dictionary<string, MultiplayerGame> multiGamesArePlayed;
+        private Dictionary<string, MultiPlayerGame> multiGames;
+        private Dictionary<string, MultiPlayerGame> multiGamesArePlayed;
         private Dictionary<string, Maze> singleGames;
 
         public Model()
         {
             singleGames = new Dictionary<string, Maze>();
-            multiGames = new Dictionary<string, MultiplayerGame>();
-            multiGamesArePlayed = new Dictionary<string, MultiplayerGame>();
+            multiGames = new Dictionary<string, MultiPlayerGame>();
+            multiGamesArePlayed = new Dictionary<string, MultiPlayerGame>();
         }
 
         public Maze GenerateMaze(string name, int rows, int cols)
@@ -28,15 +30,24 @@ namespace MVC
             Maze maze = mazeGenerator.Generate(rows, cols);
             return maze;
         }
-        public string Solve(string name, int algoritem)
+        public Solution<T> Solve(string name, int algoritem)
         {
-
-            
+            switch (algoritem)
+            {
+                case 0:
+                    {
+                        break;
+                    }
+                case 1:
+                    {
+                        break;
+                    }
+            }
         }
-        public MultiplayerGame Start(string name, int rows, int cols)
+        public MultiPlayerGame Start(string name, int rows, int cols)
         {
             Maze maze = GenerateMaze(name, rows, cols);
-            MultiplayerGame game = new MultiplayerGame();
+            MultiPlayerGame game = new MultiPlayerGame();
             game.AddMaze(maze);
             multiGames.Add(name, game);
             return game;
@@ -47,8 +58,8 @@ namespace MVC
             return null;
         }
 
-        public MultiplayerGame Join(string name) {
-            MultiplayerGame game = multiGames[name];
+        public MultiPlayerGame Join(string name) {
+            MultiPlayerGame game = multiGames[name];
 
             multiGames.Remove(name);
             multiGamesArePlayed.Add(name, game);
@@ -59,7 +70,7 @@ namespace MVC
 
         public void Close(string name) { }
 
-        public Dictionary<string, MultiplayerGame> getMultiplayerGames()
+        public Dictionary<string, MultiPlayerGame> getMultiplayerGames()
         {
             return multiGames;
         }

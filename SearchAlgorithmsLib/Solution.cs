@@ -9,6 +9,7 @@ namespace SearchAlgorithmsLib
     public class Solution<T>
     {
         private List<T> sol;
+
         public Solution(List<T> sol)
         {
             this.sol = sol;

@@ -10,10 +10,10 @@ using Newtonsoft.Json.Linq;
 
 namespace MVC
 {
-    class StartCommand : ICommand
+    class CloseCommand : ICommand
     {
         private IModel model;
-        public StartCommand(IModel model)
+        public CloseCommand(IModel model)
         {
             this.model = model;
         }

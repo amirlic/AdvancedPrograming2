@@ -6,30 +6,21 @@ using System.Threading.Tasks;
 using MazeLib;
 using MazeGeneratorLib;
 using System.Net.Sockets;
+using SearchAlgorithmsLib;
+
 
 namespace MVC
 {
-    public class MultiPlayerGame : IGame
+    public class SinglePlayerGame<T> : IGame
     {
         private TcpClient player1;
-        private TcpClient player2;
+        private Solution<T> solution;
         private Maze maze;
 
 
         public void AddPlayer(TcpClient client)
         {
-            if (player1 == null)
-            {
                 this.player1 = client;
-            }
-            else if (player2 != null)
-            {
-                this.player2 = client;
-            }
-            else if (player2 != null && player1 != null)
-            {
-                Console.WriteLine("ERORR 2 PLEYERS ALREDY JOIN");
-            }
         }
 
         public void AddMaze(Maze maze)
@@ -42,14 +33,19 @@ namespace MVC
             return this.player1;
         }
 
-        public TcpClient GetPlayer2()
-        {
-            return this.player2;
-        }
-
         public Maze GetMaze()
         {
             return this.maze;
+        }
+
+        public Solution<T> GetSolution()
+        {
+            return this.solution;
+        }
+
+        public void AddSolution(Solution<T> sol)
+        {
+            this.solution = sol;
         }
     }
 }

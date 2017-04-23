@@ -7,22 +7,22 @@ using MazeLib;
 using MazeGeneratorLib;
 using System.Net.Sockets;
 using Newtonsoft.Json.Linq;
+using SearchAlgorithmsLib;
 
 namespace MVC
 {
-    class StartCommand : ICommand
+    class SolveCommand<T> : ICommand
     {
         private IModel model;
-        public StartCommand(IModel model)
+        public SolveCommand(IModel model)
         {
             this.model = model;
         }
         public string Execute(string[] args, TcpClient client)
         {
             string name = args[0];
-            int rows = int.Parse(args[1]);
-            int cols = int.Parse(args[2]);
-            MultiPlayerGame game = model.Start(name, rows, cols);
+            int algoritem = int.Parse(args[1]);
+            Solution<T> sol = model.Solve(name, algoritem);
             model.ConnectToGame(name, client);
             Maze maze = game.GetMaze();
             return maze.ToJSON();

@@ -15,7 +15,7 @@ namespace MVC
         string Solve(string name, int algoritem);
         MultiplayerGame Start(string name, int rows, int cols);
         List<string> NameOfGames();
-        string Join(string name);
+        MultiplayerGame Join(string name);
         void Play(string move);
         void Close(string name);
         void ConnectToGame(string mazeName, TcpClient client);

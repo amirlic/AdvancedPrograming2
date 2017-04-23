@@ -13,16 +13,13 @@ namespace MVC
     {
         private Dictionary<string, MultiplayerGame> multiGames;
         private Dictionary<string, MultiplayerGame> multiGamesArePlayed;
-        private Dictionary<string, Maze> singleplayerMazeList;
-
-        private Dictionary<string, List<TcpClient>> playersInMaze;
+        private Dictionary<string, Maze> singleGames;
 
         public Model()
         {
-            singleplayerMazeList = new Dictionary<string, Maze>();
+            singleGames = new Dictionary<string, Maze>();
             multiGames = new Dictionary<string, MultiplayerGame>();
             multiGamesArePlayed = new Dictionary<string, MultiplayerGame>();
-            playersInMaze = new Dictionary<string, List<TcpClient>>();
         }
 
         public Maze GenerateMaze(string name, int rows, int cols)
@@ -31,7 +28,6 @@ namespace MVC
             Maze maze = mazeGenerator.Generate(rows, cols);
             return maze;
         }
-        //TODO..
         public string Solve(string name, int algoritem)
         {
 
@@ -51,12 +47,12 @@ namespace MVC
             return null;
         }
 
-        public string Join(string name) {
+        public MultiplayerGame Join(string name) {
             MultiplayerGame game = multiGames[name];
 
             multiGames.Remove(name);
             multiGamesArePlayed.Add(name, game);
-            return name;/////TODO JSON
+            return game;
         }
 
         public void Play(string move) { }
@@ -71,17 +67,6 @@ namespace MVC
         public void ConnectToGame(string mazeName, TcpClient client)
         {
             multiGames[mazeName].AddPlayer(client);
-            /*
-            List<TcpClient> players = playersInMaze[mazeName];
-            if (players != null)
-            {
-                playersInMaze[mazeName].Add(client);
-            } else
-            {
-                List<TcpClient> playerList = new List<TcpClient>();
-                playerList.Add(client);
-                playersInMaze.Add(mazeName, playerList);
-            }*/
         }
     }
 }

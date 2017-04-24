@@ -22,8 +22,7 @@ namespace MVC
             string name = args[0];
             int rows = int.Parse(args[1]);
             int cols = int.Parse(args[2]);
-            MultiPlayerGame game = model.Start(name, rows, cols);
-            model.ConnectToGame(name, client);
+            MultiPlayerGame game = model.Start(name, rows, cols, client);
             Maze maze = game.GetMaze();
             return maze.ToJSON();
         }

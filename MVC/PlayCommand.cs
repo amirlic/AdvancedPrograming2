@@ -7,6 +7,7 @@ using MazeLib;
 using MazeGeneratorLib;
 using System.Net.Sockets;
 using Newtonsoft.Json.Linq;
+using System.IO;
 
 namespace MVC
 {
@@ -19,13 +20,13 @@ namespace MVC
         }
         public string Execute(string[] args, TcpClient client)
         {
-            string name = args[0];
-            int rows = int.Parse(args[1]);
-            int cols = int.Parse(args[2]);
-            MultiPlayerGame game = model.Start(name, rows, cols);
-            model.ConnectToGame(name, client);
-            Maze maze = game.GetMaze();
-            return maze.ToJSON();
+            Direction move = (Direction)Enum.Parse(typeof(Direction), args[0]);
+            MultiPlayerGame game = model.Play(client);
+            JObject playObj = new JObject();
+            playObj["Name"] = game.GetMaze().Name;
+            playObj["Direction"] = move.ToString();
+            game.WritePlayMove(client, playObj.ToString());
+            return playObj.ToString();
         }
     }
 }

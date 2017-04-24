@@ -14,6 +14,7 @@ namespace MVC
     class SolveCommand : ICommand
     {
         private IModel model;
+
         public SolveCommand(IModel model)
         {
             this.model = model;
@@ -22,9 +23,12 @@ namespace MVC
         {
             string name = args[0];
             int algoritem = int.Parse(args[1]);
-            Adapter maze = model.Solve(name, algoritem);
-            Solution<Position> sol = maze.GetSolution();
-            return maze.ToJSON();
+            SinglePlayerGame<Position> game = model.Solve(name, algoritem);
+            JObject solveObj = new JObject();
+            solveObj["Name"] = game.GetMaze().Name;
+            solveObj["Solution"] = game.GetSolution().ToString();
+            solveObj["NodesEvaluated"] = game.GetSolution().GetNum().ToString();
+            return solveObj.ToString();
         }
     }
 }

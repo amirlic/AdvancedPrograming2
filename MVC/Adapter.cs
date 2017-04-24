@@ -12,7 +12,6 @@ namespace MVC
     public class Adapter : ISearchable<Position>
     {
         private Maze maze;
-        private Solution<Position> solution;
 
 
         public Adapter(Maze maze)
@@ -73,30 +72,6 @@ namespace MVC
         {
             MazeState<Position> entrance = new MazeState<Position>(maze.InitialPos);
             return entrance;
-        }
-
-        public Solution<Position> GetSolution()
-        {
-            return this.solution;
-        }
-
-        public void AddSolution(Solution<Position> sol)
-        {
-            this.solution = sol;
-        }
-
-        public int GetEvulate()
-        {
-            return solution.GetNum();
-        }
-
-        public string ToJSON()
-        {
-            JObject solObj = new JObject();
-            solObj["Name"] = this.maze.Name;
-            solObj["Solution"] = this.solution.ToString();
-            solObj["NodesEvaluated"] = this.solution.GetNum().ToString();
-            return solObj.ToString();
         }
     }
 }

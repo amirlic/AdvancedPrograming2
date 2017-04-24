@@ -14,12 +14,11 @@ namespace MVC
     public interface IModel
     {
         Maze GenerateMaze(string name, int rows, int cols);
-        Adapter Solve(string name, int algoritem);
-        MultiPlayerGame Start(string name, int rows, int cols);
+        SinglePlayerGame<Position> Solve(string name, int algoritem);
+        MultiPlayerGame Start(string name, int rows, int cols, TcpClient client);
         List<string> NameOfGames();
-        MultiPlayerGame Join(string name);
-        void Play(string move);
+        MultiPlayerGame Join(string name, TcpClient client);
+        MultiPlayerGame Play(TcpClient client);
         void Close(string name);
-        void ConnectToGame(string mazeName, TcpClient client);
     }
 }

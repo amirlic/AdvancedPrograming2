@@ -11,10 +11,11 @@ using SearchAlgorithmsLib;
 
 namespace MVC
 {
-    public class SinglePlayerGame : IGame
+    public class SinglePlayerGame<T> : IGame
     {
         private TcpClient player1;
         private Maze maze;
+        private Solution<T> sol;
 
 
         public void AddPlayer(TcpClient client)
@@ -35,6 +36,16 @@ namespace MVC
         public Maze GetMaze()
         {
             return this.maze;
+        }
+
+        public Solution<T> GetSolution()
+        {
+            return this.sol;
+        }
+
+        public void AddSolution(Solution<T> sol)
+        {
+            this.sol = sol;
         }
     }
 }

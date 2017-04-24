@@ -65,6 +65,7 @@
     <Compile Include="JoinCommand.cs" />
     <Compile Include="ListCommand.cs" />
     <Compile Include="Model.cs" />
+    <Compile Include="MultiClientHandler.cs" />
     <Compile Include="MultiPlayerGame.cs" />
     <Compile Include="PlayCommand.cs" />
     <Compile Include="Program.cs" />

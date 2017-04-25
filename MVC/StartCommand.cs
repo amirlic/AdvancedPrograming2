@@ -24,6 +24,7 @@ namespace MVC
             int cols = int.Parse(args[2]);
             MultiPlayerGame game = model.Start(name, rows, cols, client);
             Maze maze = game.GetMaze();
+            maze.Name = name;
             return maze.ToJSON();
         }
     }

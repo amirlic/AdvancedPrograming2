@@ -15,8 +15,8 @@ namespace MVC
         private TcpClient player1;
         private TcpClient player2;
         private Maze maze;
-        private StreamWriter writer1;
-        private StreamWriter writer2;
+        private BinaryWriter writer1;
+        private BinaryWriter writer2;
 
         public void AddPlayer(TcpClient client)
         {
@@ -24,13 +24,13 @@ namespace MVC
             {
                 this.player1 = client;
                 NetworkStream stream = player1.GetStream();
-                this.writer1 = new StreamWriter(stream);
+                this.writer1 = new BinaryWriter(stream);
             }
-            else if (player2 != null)
+            else if (player2 == null)
             {
                 this.player2 = client;
                 NetworkStream stream2 = player2.GetStream();
-                this.writer2 = new StreamWriter(stream2);
+                this.writer2 = new BinaryWriter(stream2);
             }
             else if (player2 != null && player1 != null)
             {
@@ -53,12 +53,12 @@ namespace MVC
             return this.player2;
         }
 
-        public StreamWriter GetPlayerWriter()
+        public BinaryWriter GetPlayerWriter()
         {
             return this.writer1;
         }
 
-        public StreamWriter GetPlayerWriter2()
+        public BinaryWriter GetPlayerWriter2()
         {
             return this.writer2;
         }
@@ -73,11 +73,11 @@ namespace MVC
 
             if (dest.Equals(this.player1))
             {
-                this.writer1.Write(massage);
+                this.writer2.Write(massage);
             }
             else if (dest.Equals(this.player2))
             {
-                this.writer2.Write(massage);
+                this.writer1.Write(massage);
             }
             else
             {

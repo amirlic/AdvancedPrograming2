@@ -22,6 +22,7 @@ namespace MVC
             string name = args[0];
             MultiPlayerGame game = model.Join(name, client);
             Maze maze = game.GetMaze();
+            maze.Name = name;
             return maze.ToJSON();
         }
     }

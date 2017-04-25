@@ -19,19 +19,26 @@ namespace MVC
 
         public void HandleClient(TcpClient client)
         {
-            new Task(() =>
+            Task t = new Task(() =>
             {
-                NetworkStream stream = client.GetStream();
-                BinaryReader reader = new BinaryReader(stream);
-                BinaryWriter writer = new BinaryWriter(stream);
-                
-                string commandLine = reader.ReadString();
-                Console.WriteLine("Got command: {0}", commandLine);
-                string result = control.ExecuteCommand(commandLine, client);
-                writer.Write(result);
+                using (NetworkStream stream = client.GetStream())
+                using (BinaryReader reader = new BinaryReader(stream))
+                using (BinaryWriter writer = new BinaryWriter(stream))
+                {
+                    string line = "";
+                    while (!line.Equals("close"))
 
+                    {
+                        line = reader.ReadString();
+                        string result = this.control.ExecuteCommand(line, client);
+                        Console.WriteLine(line);
+                        writer.Write(result);
+                        writer.Flush();
+                    }
+                }
                 client.Close();
-            }).Start();
+            });
+            t.Start();
         }
     }
 }

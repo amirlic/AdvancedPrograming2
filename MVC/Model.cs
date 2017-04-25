@@ -14,6 +14,7 @@ namespace MVC
     public class Model : IModel
     {
         private Dictionary<string, MultiPlayerGame> multiGames;
+        private List<string> games;
         private Dictionary<string, MultiPlayerGame> multiGamesArePlayed;
         private Dictionary<string, SinglePlayerGame<Position>> singleGames;
         private Dictionary<string, SinglePlayerGame<Position>> singleGamesArePlayed;
@@ -26,6 +27,7 @@ namespace MVC
             multiGames = new Dictionary<string, MultiPlayerGame>();
             multiGamesArePlayed = new Dictionary<string, MultiPlayerGame>();
             gameSolutions = new Dictionary<string, Solution<Position>>();
+            games = new List<string>();
         }
 
         public Maze GenerateMaze(string name, int rows, int cols)
@@ -84,7 +86,8 @@ namespace MVC
             game.AddMaze(maze);
             game.AddPlayer(client);
             multiGames.Add(name, game);
-            while (multiGamesArePlayed[name] != null)
+            games.Add(name);
+            while (!multiGamesArePlayed.ContainsKey(name))
             {
 
             }
@@ -93,7 +96,7 @@ namespace MVC
 
         public List<string> NameOfGames()
         {
-            return null;
+            return this.games;
         }
 
         public MultiPlayerGame Join(string name, TcpClient client) {
@@ -101,6 +104,7 @@ namespace MVC
             game.AddPlayer(client);
             multiGames.Remove(name);
             multiGamesArePlayed.Add(name, game);
+            games.Remove(name);
             return game;
         }
 
@@ -129,7 +133,7 @@ namespace MVC
 
         public void Close(string name)
         {
-            multiGames[name].EndGame();
+            multiGamesArePlayed[name].EndGame();
         }
 
         public Dictionary<string, MultiPlayerGame> getMultiplayerGames()

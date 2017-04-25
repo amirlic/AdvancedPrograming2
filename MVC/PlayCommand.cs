@@ -20,13 +20,13 @@ namespace MVC
         }
         public string Execute(string[] args, TcpClient client)
         {
-            Direction move = (Direction)Enum.Parse(typeof(Direction), args[0]);
+            string move = args[0];
             MultiPlayerGame game = model.Play(client);
             JObject playObj = new JObject();
             playObj["Name"] = game.GetMaze().Name;
             playObj["Direction"] = move.ToString();
             game.WritePlayMove(client, playObj.ToString());
-            return playObj.ToString();
+            return "";
         }
     }
 }

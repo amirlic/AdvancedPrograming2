@@ -37,13 +37,14 @@ namespace MVC
             singleGames.Add(name, game);
             return maze;
         }
+
         public SinglePlayerGame<Position> Solve(string name, int algoritem)
         {
             Adapter maze = new Adapter(singleGames[name].GetMaze());
             SinglePlayerGame<Position> game = singleGames[name];
             singleGames.Remove(name);
             singleGamesArePlayed.Add(name, game);
-            if (gameSolutions[name] != null)
+            if (!gameSolutions.ContainsKey(name))
             {
                 switch (algoritem)
                 {
@@ -75,6 +76,7 @@ namespace MVC
             }
             return game;
         }
+
         public MultiPlayerGame Start(string name, int rows, int cols, TcpClient client)
         {
             Maze maze = GenerateMaze(name, rows, cols);
@@ -82,6 +84,10 @@ namespace MVC
             game.AddMaze(maze);
             game.AddPlayer(client);
             multiGames.Add(name, game);
+            while (multiGamesArePlayed[name] != null)
+            {
+
+            }
             return game;
         }
 
@@ -121,7 +127,10 @@ namespace MVC
 
         }
 
-        public void Close(string name) { }
+        public void Close(string name)
+        {
+            multiGames[name].EndGame();
+        }
 
         public Dictionary<string, MultiPlayerGame> getMultiplayerGames()
         {

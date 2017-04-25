@@ -11,6 +11,12 @@ namespace MVC
     class MultiClientHandler : IClientHandler
     {
         private Controller control;
+
+        public MultiClientHandler()
+        {
+            this.control = new Controller();
+        }
+
         public void HandleClient(TcpClient client)
         {
             new Task(() =>
@@ -24,6 +30,7 @@ namespace MVC
                     string result = control.ExecuteCommand(commandLine, client);
                     writer.Write(result);
                 }
+                client.Close();
             }).Start();
         }
     }

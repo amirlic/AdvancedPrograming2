@@ -11,19 +11,25 @@ namespace MVC
     class ClientHandler : IClientHandler
     {
         private Controller control;
+
+        public ClientHandler()
+        {
+            this.control = new Controller();
+        } 
+
         public void HandleClient(TcpClient client)
         {
             new Task(() =>
             {
-                using (NetworkStream stream = client.GetStream())
-                using (StreamReader reader = new StreamReader(stream))
-                using (StreamWriter writer = new StreamWriter(stream))
-                {
-                    string commandLine = reader.ReadLine();
-                    Console.WriteLine("Got command: {0}", commandLine);
-                    string result = control.ExecuteCommand(commandLine, client);
-                    writer.Write(result);
-                }
+                NetworkStream stream = client.GetStream();
+                BinaryReader reader = new BinaryReader(stream);
+                BinaryWriter writer = new BinaryWriter(stream);
+                
+                string commandLine = reader.ReadString();
+                Console.WriteLine("Got command: {0}", commandLine);
+                string result = control.ExecuteCommand(commandLine, client);
+                writer.Write(result);
+
                 client.Close();
             }).Start();
         }

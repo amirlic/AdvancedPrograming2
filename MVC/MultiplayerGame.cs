@@ -84,5 +84,11 @@ namespace MVC
                 Console.WriteLine("ERORR");
             }
         }
+
+        public void EndGame()
+        {
+            this.player1.Close();
+            this.player2.Close();
+        }
      }
 }

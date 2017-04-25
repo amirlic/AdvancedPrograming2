@@ -22,6 +22,7 @@ namespace MVC
             int rows = int.Parse(args[1]);
             int cols = int.Parse(args[2]);
             Maze maze = model.GenerateMaze(name, rows, cols);
+            maze.Name = name;
             return maze.ToJSON();
         }
     }

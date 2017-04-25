@@ -11,7 +11,6 @@ namespace MVC
 {
     class Server
     {
-        private IModel model;
         private int port;
         private TcpListener listener;
         private IClientHandler ch;
@@ -48,6 +47,7 @@ namespace MVC
                 Console.WriteLine("Server stopped");
             });
             task.Start();
+            task.Wait();//////
         }
         public void Stop()
         {

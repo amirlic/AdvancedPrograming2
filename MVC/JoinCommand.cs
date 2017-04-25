@@ -6,22 +6,23 @@ using System.Threading.Tasks;
 using MazeLib;
 using MazeGeneratorLib;
 using System.Net.Sockets;
-using Newtonsoft.Json.Linq;
 
 namespace MVC
 {
-    class CloseCommand : ICommand
+    class JoinCommand : ICommand
     {
         private IModel model;
-        public CloseCommand(IModel model)
+        public JoinCommand(IModel model)
         {
             this.model = model;
         }
+
         public string Execute(string[] args, TcpClient client)
         {
             string name = args[0];
-            model.Close(name);
-            return "";
+            MultiPlayerGame game = model.Join(name, client);
+            Maze maze = game.GetMaze();
+            return maze.ToJSON();
         }
     }
 }

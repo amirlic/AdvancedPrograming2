@@ -20,7 +20,7 @@ namespace MVC
         public string Execute(string[] args, TcpClient client)
         {
             string name = args[0];
-            model.Close(name);
+            model.Close(name, client);
             return "close";
         }
     }

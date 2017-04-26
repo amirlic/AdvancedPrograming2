@@ -127,8 +127,9 @@ namespace MVC
 
         }
 
-        public void Close(string name)
+        public void Close(string name, TcpClient client)
         {
+            multiGamesArePlayed[name].EndGame(client);
             multiGamesArePlayed.Remove(name);
         }
 

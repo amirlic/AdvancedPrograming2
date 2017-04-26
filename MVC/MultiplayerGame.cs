@@ -93,10 +93,20 @@ namespace MVC
             return false;
         }
 
-        public void EndGame()
+        public void EndGame(TcpClient dest)
         {
-            this.player1.Close();
-            this.player2.Close();
+            if (dest.Equals(this.player1))
+            {
+                this.writer2.Write("close");
+            }
+            else if (dest.Equals(this.player2))
+            {
+                this.writer1.Write("close");
+            }
+            else
+            {
+                Console.WriteLine("ERORR");
+            }
         }
      }
 }

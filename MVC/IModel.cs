@@ -19,6 +19,6 @@ namespace MVC
         List<string> NameOfGames();
         MultiPlayerGame Join(string name, TcpClient client);
         MultiPlayerGame Play(TcpClient client);
-        void Close(string name);
+        void Close(string name, TcpClient client);
     }
 }

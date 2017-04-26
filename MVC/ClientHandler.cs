@@ -32,10 +32,6 @@ namespace MVC
                         line = reader.ReadString();
                         Console.WriteLine(line);
                         string result = this.control.ExecuteCommand(line, client);
-                        if (result.Equals("close"))
-                        {
-                            client.Close();
-                        }
                         writer.Write(result);
                         writer.Flush();
                     }

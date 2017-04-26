@@ -87,10 +87,6 @@ namespace MVC
             game.AddPlayer(client);
             multiGames.Add(name, game);
             games.Add(name);
-            while (!multiGamesArePlayed.ContainsKey(name))
-            {
-
-            }
             return game;
         }
 
@@ -133,7 +129,7 @@ namespace MVC
 
         public void Close(string name)
         {
-            multiGamesArePlayed[name].EndGame();
+            multiGamesArePlayed.Remove(name);
         }
 
         public Dictionary<string, MultiPlayerGame> getMultiplayerGames()

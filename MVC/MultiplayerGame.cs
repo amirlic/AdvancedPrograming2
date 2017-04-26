@@ -17,6 +17,7 @@ namespace MVC
         private Maze maze;
         private BinaryWriter writer1;
         private BinaryWriter writer2;
+        private bool isPlay = false;
 
         public void AddPlayer(TcpClient client)
         {
@@ -29,6 +30,7 @@ namespace MVC
             else if (player2 == null)
             {
                 this.player2 = client;
+                this.isPlay = true;
                 NetworkStream stream2 = player2.GetStream();
                 this.writer2 = new BinaryWriter(stream2);
             }
@@ -83,6 +85,12 @@ namespace MVC
             {
                 Console.WriteLine("ERORR");
             }
+        }
+
+        public bool IsPlaying()
+        {
+            if (isPlay) { return true; }
+            return false;
         }
 
         public void EndGame()

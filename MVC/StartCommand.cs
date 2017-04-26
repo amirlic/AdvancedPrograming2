@@ -25,6 +25,10 @@ namespace MVC
             MultiPlayerGame game = model.Start(name, rows, cols, client);
             Maze maze = game.GetMaze();
             maze.Name = name;
+            while (!game.IsPlaying())
+            {
+
+            }
             return maze.ToJSON();
         }
     }

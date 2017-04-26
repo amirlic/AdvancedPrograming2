@@ -21,17 +21,21 @@ namespace MVC
         {
             Task t = new Task(() =>
             {
-                using (NetworkStream stream = client.GetStream())
-                using (BinaryReader reader = new BinaryReader(stream))
-                using (BinaryWriter writer = new BinaryWriter(stream))
+                NetworkStream stream = client.GetStream();
+                BinaryReader reader = new BinaryReader(stream);
+                BinaryWriter writer = new BinaryWriter(stream);
                 {
                     string line = "";
-                    while (!line.Equals("close"))
+                    while (!line.StartsWith("close"))
 
                     {
                         line = reader.ReadString();
-                        string result = this.control.ExecuteCommand(line, client);
                         Console.WriteLine(line);
+                        string result = this.control.ExecuteCommand(line, client);
+                        if (result.Equals("close"))
+                        {
+                            client.Close();
+                        }
                         writer.Write(result);
                         writer.Flush();
                     }

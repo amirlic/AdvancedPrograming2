@@ -21,7 +21,7 @@ namespace MVC
         {
             string name = args[0];
             model.Close(name);
-            return "";
+            return "close";
         }
     }
 }

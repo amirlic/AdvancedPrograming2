@@ -23,7 +23,6 @@ namespace ClientProj
         public void Start()
         {
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8000);
-            bool canContinue = true;
             this.client.Connect(ep);
             Console.WriteLine("You are connected");
             string request = "";
@@ -32,8 +31,13 @@ namespace ClientProj
             BinaryReader reader = new BinaryReader(stream);
             BinaryWriter writer = new BinaryWriter(stream);
 
+            bool isWrite = false;
+            bool isRead = true;
+
+
             while (true)
             {
+
                 Console.WriteLine("please enter command to the server ");
                 request = Console.ReadLine();
                 writer.Write(request);
@@ -42,15 +46,49 @@ namespace ClientProj
                 request.StartsWith("play") || request.StartsWith("list") ||
                 request.StartsWith("start"))
                 {
-                    break;
+                    while (true)
+                    {
+                        while (isRead)
+                        {
+                            Task recive = new Task(() =>
+                            {
+                                BinaryReader readerer = new BinaryReader(stream);
+                                Console.WriteLine("MORE ANSWER");
+                                string answer = readerer.ReadString();
+                                Console.WriteLine("server answered to = {0}", answer);
+                                isRead = false;
+                                isWrite = true;
+                                Thread.Sleep(800);
+                            });
+                            recive.Start();
+                            recive.Wait();
+                        }
+                        while (isWrite)
+                        {
+                            Task send = new Task(() =>
+                            {
+                                BinaryWriter writerer = new BinaryWriter(stream);
+                                Console.WriteLine("please enter command to the server ");
+                                request = Console.ReadLine();
+                                Console.WriteLine("SENDING");
+                                writerer.Write(request);
+                                writerer.Flush();
+                                Thread.Sleep(800);
+                                isRead = true;
+                                isWrite = false;
+                            });
+                            send.Start();
+                            send.Wait();
+                        }
+                    }
                 }
-                string answer = reader.ReadString();
-                Console.WriteLine("server answered to = {0}", answer);
+                else
+                {
+                    string answer = reader.ReadString();
+                    Console.WriteLine("server answered to = {0}", answer);
+                }
             }
-            if (request.StartsWith("start"))
-            {
-                string answer = reader.ReadString();
-            }
+            /*
             while (true)
             {
                 if (request.StartsWith("join"))
@@ -100,7 +138,7 @@ namespace ClientProj
                     }
                 }
                 endConnection = true;
-            }
+            }*/
         }
     }
 }

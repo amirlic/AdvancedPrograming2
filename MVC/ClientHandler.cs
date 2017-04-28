@@ -26,7 +26,7 @@ namespace MVC
                 BinaryWriter writer = new BinaryWriter(stream);
                 {
                     string line = "";
-                    while (!line.StartsWith("close"))
+                    while (!line.StartsWith("close") && !line.StartsWith("generate") && !line.StartsWith("solve"))
 
                     {
                         line = reader.ReadString();

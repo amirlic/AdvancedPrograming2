@@ -18,27 +18,32 @@ namespace ClientProj
 
         public Client()
         {
-            this.client = new TcpClient();
+
         }
 
         public void Start()
         {
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8000);
-            this.client.Connect(ep);
-            Console.WriteLine("You are connected");
+
             string request = "";
             string answer = "";
-
-            NetworkStream stream = client.GetStream();
-            BinaryReader reader = new BinaryReader(stream);
-            BinaryWriter writer = new BinaryWriter(stream);
+            bool endGame = false;
 
             while (true)
             {
-                bool endGame = false;
-
-                Console.WriteLine("please enter command to the server ");
+                Console.WriteLine("please enter First command to the server ");
                 request = Console.ReadLine();
+
+                this.client = new TcpClient();
+                this.client.Connect(ep);
+                Console.WriteLine("You are connected");
+
+                NetworkStream stream = client.GetStream();
+                BinaryReader reader = new BinaryReader(stream);
+                BinaryWriter writer = new BinaryWriter(stream);
+
+                endGame = false;
+
                 writer.Write(request);
                 writer.Flush();
 
@@ -48,30 +53,33 @@ namespace ClientProj
                 {
                     Task recive = new Task(() =>
                         {
-                           while (!answer.Equals("close"))
+                           while (!answer.Equals("close") && !endGame)
                            {
-                               BinaryReader readerer = new BinaryReader(stream);
-                               Console.WriteLine("Wait for ANSWER");
-                               answer = readerer.ReadString();
-                               Console.WriteLine("server answered to = {0}", answer);
+                                BinaryReader readerer = new BinaryReader(stream);
+
+                                Console.WriteLine("Wait for ANSWER");
+                                answer = readerer.ReadString();
+                                Console.WriteLine("server answered to = {0}", answer);
                            }
+                           Console.WriteLine("EndReciveTASK");
                            endGame = true;
                        });
                        recive.Start();
-                    //if (request.StartsWith("close")) { recive.Wait(); }
+                    if (endGame) { recive.Wait(); }
 
                     Task send = new Task(() =>
                         {
-                            while (!answer.StartsWith("close"))
+                        while ((!request.StartsWith("close") || answer.StartsWith("close")) && !endGame)
                             {
-                                 BinaryWriter writerer = new BinaryWriter(stream);
-                                 Console.WriteLine("please enter command to the server ");
-                                 request = Console.ReadLine();
-                                 Console.WriteLine("SENDING");
-                                 writerer.Write(request);
-                                 writerer.Flush();
-                             }
-                             endGame = true;
+                                BinaryWriter writerer = new BinaryWriter(stream);
+                                Console.WriteLine("please enter command to the server ");
+                                request = Console.ReadLine();
+                                Console.WriteLine("SENDING");
+                                writerer.Write(request);
+                                writerer.Flush();
+                            }
+                            Console.WriteLine("EndSendTask");
+                            endGame = true;
                          });
                          send.Start();
                          send.Wait();
@@ -79,7 +87,9 @@ namespace ClientProj
                 else
                 {
                     answer = reader.ReadString();
-                    Console.WriteLine("server answered to = {0}", answer);
+                    Console.WriteLine("server SinglePlayer answered to = {0}", answer);
+                    endGame = true;
+                    client.Close();
                 }
             }
         }

@@ -10,7 +10,7 @@ using MazeLib;
 
 namespace ClientWpf.Model
 {
-    interface IModelDeskTopApp : INotifyPropertyChanged
+    public interface IModelDeskTopApp : INotifyPropertyChanged
     {   
         //PlayerStatus IsFinished { get; }
         bool IsConnected { get; }

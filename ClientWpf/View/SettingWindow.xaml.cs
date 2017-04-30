@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ClientWpf.Model;
+using ClientWpf.ViewModel;
 
 namespace ClientWpf.View
 {
@@ -20,10 +22,12 @@ namespace ClientWpf.View
     public partial class SettingsWindow : Window
     {
         private SettingsViewModel vm;
-        public SettingsWindow()
+        private MainWindow mainWindow;
+
+        public SettingsWindow(ApplicationSettingsModel settingModel)
         {
             InitializeComponent();
-            vm = new SettingsViewModel();
+            vm = new SettingsViewModel(settingModel);
             this.DataContext = vm;
         }
         private void btnOK_Click(object sender, RoutedEventArgs e)

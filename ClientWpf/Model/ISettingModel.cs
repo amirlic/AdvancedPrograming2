@@ -9,7 +9,7 @@ using MazeLib;
 
 namespace ClientWpf.Model
 {
-    interface ISettingsModel
+    public interface ISettingsModel
     {
         string ServerIP { get; set; }
         int ServerPort { get; set; }

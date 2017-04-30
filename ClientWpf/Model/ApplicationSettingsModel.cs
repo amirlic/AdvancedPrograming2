@@ -10,7 +10,7 @@ using ClientWpf.Model;
 
 namespace ClientWpf.Model
 {
-    class ApplicationSettingsModel : ISettingsModel
+    public class ApplicationSettingsModel : ISettingsModel
     {
         public string ServerIP
         {

@@ -11,5 +11,6 @@ namespace ClientWpf.ViewModel
 {
     class ViewModelDeskTopApp : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

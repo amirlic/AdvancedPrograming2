@@ -10,7 +10,7 @@ using ClientWpf.Model;
 
 namespace ClientWpf.ViewModel
 {
-    class SettingsViewModel : ViewModel
+    public class SettingsViewModel : ViewModel
     {
         private ISettingsModel model;
         public SettingsViewModel(ISettingsModel model)

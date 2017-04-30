@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClientWpf.Model
 {
-    class ModelDeskTopApp
+    public class ModelDeskTopApp
     {
     }
 }

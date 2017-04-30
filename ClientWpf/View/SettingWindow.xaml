@@ -26,6 +26,6 @@
             SelectedIndex="{Binding SearchAlgorithm}" IsEditable="False">
             <ComboBoxItem>BFS</ComboBoxItem>
             <ComboBoxItem>DFS</ComboBoxItem>
-        </ComboBox>
+        </ComboBox>
     </Grid>
 </Window>

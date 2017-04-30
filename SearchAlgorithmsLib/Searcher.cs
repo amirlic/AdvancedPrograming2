@@ -31,7 +31,9 @@ namespace SearchAlgorithmsLib
         protected MazeState<T> PopOpenList() {
             ++this.evaluatedNodes;
             //return openList.poll;
-            return openList.First();
+            MazeState<T> f = openList.First();
+            openList.Dequeue();
+            return f;
         }
         // a property of openList 
         public int OpenListSize {

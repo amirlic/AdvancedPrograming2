@@ -8,6 +8,7 @@ using System.Net.NetworkInformation;
 using System.Net;
 using System.IO;
 using System.Threading;
+using System.Configuration;
 
 
 namespace ClientProj
@@ -23,6 +24,10 @@ namespace ClientProj
 
         public void Start()
         {
+            //IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"),
+                 //int.Parse(ConfigurationManager.AppSettings["port"]));
+            //the visual dont recognize this...
+
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8000);
 
             string request = "";

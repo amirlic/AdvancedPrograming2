@@ -20,7 +20,6 @@ namespace SearchAlgorithmsLib
         {
             sol1 = new List<MazeState<T>>();
         }
-
         public Solution(List<T> sol)
         {
             this.sol = sol;
@@ -36,9 +35,9 @@ namespace SearchAlgorithmsLib
             this.sol1.Add(stat);
         }
 
-        public List<T> GetSol()
+        public List<MazeState<T>> GetSol()
         {
-            return this.sol;
+            return this.sol1;
         }
 
         public void SetNum(int num)

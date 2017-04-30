@@ -11,7 +11,7 @@ namespace SearchAlgorithmsLib
         private T state;    // the state represented by a string 
         private double cost;     // cost to reach this state (set by a setter)
         private MazeState<T> cameFrom;  // the state we came from to this state (setter)
-        
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -19,7 +19,7 @@ namespace SearchAlgorithmsLib
         public MazeState(T state)    // CTOR 
         {
             this.state = state;
-            this.cameFrom = null;
+            cameFrom = null;
         }
 
         /// <summary>
@@ -74,6 +74,61 @@ namespace SearchAlgorithmsLib
         {
             return base.ToString().GetHashCode();
         }
-    }
 
+        public static class StatePool
+        {
+            private static Dictionary<T, MazeState<T>> stateMap = new Dictionary<T, MazeState<T>>();
+
+
+            public static MazeState<T> getState(T stat)
+            {
+                if (stateMap.ContainsKey(stat))
+                {
+                    return stateMap[stat];
+                }
+                else
+                {
+                    MazeState<T> newStat = new MazeState<T>(stat);
+                    stateMap[stat] = newStat;
+                    return newStat;
+                }
+            }
+            //private static HashSet<T> pool = new HashSet<T>();
+            //public static void add(T obj)
+            //{
+            //    if(!pool.Contains(obj))
+            //    {
+            //        pool.Add(obj);
+            //    }
+            //}
+            //public static T getObj(T obj)
+            //{
+            //    if(pool.Contains(obj))
+            //    {
+            //        for(int i=0; i<pool.Count();i++)
+            //        {
+            //            if(pool.ElementAt(i).Equals(obj))
+            //            {
+            //                return pool.ElementAt(i);
+            //            }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        add(obj);
+            //        for (int i = 0; i < pool.Count(); i++)
+            //        {
+            //            if (pool.ElementAt(i).Equals(obj))
+            //            {
+            //                return pool.ElementAt(i);
+            //            }
+            //        }
+            //    }
+            //    return obj;
+            //}
+        }
+
+    }
 }
+
+

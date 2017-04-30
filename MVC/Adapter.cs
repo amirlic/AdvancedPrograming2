@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using SearchAlgorithmsLib;
 using MazeLib;
 using Newtonsoft.Json.Linq;
+using MazeGeneratorLib;
 
 namespace MVC
 {
@@ -27,6 +28,7 @@ namespace MVC
         {
             List<MazeState<Position>> allPossible = new List<MazeState<Position>>();
             Position curr = s.getState();
+            //HashSet<MazeState<Position>> pool = new HashSet<MazeState<Position>>();
             //In all of these I first check if the neighbour is within the limits of the maze
             //because it is just more efficient
 
@@ -37,27 +39,54 @@ namespace MVC
             //left
 
             //up
-            if (curr.Row - 1 >= 0 && this.maze[curr.Row - 1, curr.Col] == CellType.Free)
+            if (curr.Row - 1 >= 0 && curr.Row != 0 && this.maze[curr.Row - 1, curr.Col] == CellType.Free)
             {
-                allPossible.Add(new MazeState<Position>(new Position(curr.Row - 1, curr.Col)));
+                //MazeState<Position> pos = new MazeState<Position>(new Position(curr.Row - 1, curr.Col));
+                MazeState<Position> pos = MazeState<Position>.StatePool.getState(new Position(curr.Row - 1, curr.Col));
+                //pos.setCameFrom(MazeState<Position>.StatePool.getState(curr));
+                //Console.WriteLine(curr);
+                if (pos.CameFrom() == null)
+                    pos.setCameFrom(s);
+                allPossible.Add(pos);
+                //if (!pool.Contains(pos))
+                //allPossible.Add(pos);
             }
 
             //right
             if (curr.Col + 1 <= this.maze.Cols - 1 && this.maze[curr.Row, curr.Col + 1] == CellType.Free)
             {
-                allPossible.Add(new MazeState<Position>(new Position(curr.Row, curr.Col + 1)));
+                //MazeState<Position> pos = new MazeState<Position>(new Position(curr.Row, curr.Col + 1));
+                MazeState<Position> pos = MazeState<Position>.StatePool.getState(new Position(curr.Row, curr.Col + 1));
+                //pos.setCameFrom(MazeState<Position>.StatePool.getState(curr));
+                //Console.WriteLine(curr);
+                if (pos.CameFrom() == null)
+                    pos.setCameFrom(s);
+                allPossible.Add(pos);
             }
 
             //left
-            if (curr.Col - 1 <= this.maze.Cols - 1 && this.maze[curr.Row, curr.Col - 1] == CellType.Free)
+            if (curr.Col - 1 <= this.maze.Cols - 1 && curr.Col != 0 && this.maze[curr.Row, curr.Col - 1] == CellType.Free)
             {
-                allPossible.Add(new MazeState<Position>(new Position(curr.Row, curr.Col - 1)));
+                //MazeState<Position> pos = new MazeState<Position>(new Position(curr.Row, curr.Col - 1));
+                MazeState<Position> pos = MazeState<Position>.StatePool.getState(new Position(curr.Row, curr.Col - 1));
+                //if (!pool.Contains(pos))
+                //pos.setCameFrom(MazeState<Position>.StatePool.getState(curr));
+                //Console.WriteLine(curr);
+                if (pos.CameFrom() == null)
+                    pos.setCameFrom(s);
+                allPossible.Add(pos);
             }
 
             //below
             if (curr.Row + 1 <= this.maze.Rows - 1 && this.maze[curr.Row + 1, curr.Col] == CellType.Free)
             {
-                allPossible.Add(new MazeState<Position>(new Position(curr.Row + 1, curr.Col)));
+                //MazeState<Position> pos = new MazeState<Position>(new Position(curr.Row + 1, curr.Col));
+                MazeState<Position> pos = MazeState<Position>.StatePool.getState(new Position(curr.Row + 1, curr.Col));
+                if (pos.CameFrom() == null)
+                    pos.setCameFrom(s);
+                //pos.setCameFrom(MazeState<Position>.StatePool.getState(curr));
+                //Console.WriteLine(curr);
+                allPossible.Add(pos);
             }
             return allPossible;
         }
@@ -75,4 +104,3 @@ namespace MVC
         }
     }
 }
-

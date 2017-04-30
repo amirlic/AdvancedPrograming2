@@ -26,9 +26,40 @@ namespace MVC
             SinglePlayerGame<Position> game = model.Solve(name, algoritem);
             JObject solveObj = new JObject();
             solveObj["Name"] = game.GetMaze().Name;
-            solveObj["Solution"] = game.GetSolution().ToString();
+            solveObj["Solution"] = ParseSolToJson(game.GetSolution().GetSol());
             solveObj["NodesEvaluated"] = game.GetSolution().GetNum().ToString();
             return solveObj.ToString();
+        }
+
+        public string ParseSolToJson(List<MazeState<Position>> sol1)
+        {
+            string sol = "";
+            if (sol1 != null)
+            {
+                for (int i = 1; i < sol1.Count(); i++)
+                {
+                    if (sol1[i - 1].getState().Row > sol1[i].getState().Row)
+                    {
+                        sol = "1" + sol;
+                    }
+
+                    else if (sol1[i - 1].getState().Row < sol1[i].getState().Row)
+                    {
+                        sol = "3" + sol;
+                    }
+
+                    else if (sol1[i - 1].getState().Col < sol1[i].getState().Col)
+                    {
+                        sol = "0" + sol;
+                    }
+
+                    else if (sol1[i - 1].getState().Col < sol1[i].getState().Col)
+                    {
+                        sol = "1" + sol;
+                    }
+                }
+            }
+            return sol;
         }
     }
 }

@@ -21,7 +21,11 @@ namespace SearchAlgorithmsLib
         /// <returns></returns>
         public override Solution<T> Search(ISearchable<T> searchable)
         { // Searcher's abstract method overriding
-            AddToOpenList(searchable.getInitialState(), 0); // inherited from Searcher
+            searchable.getInitialState().setCameFrom(null);
+            AddToOpenList(searchable.getInitialState(), 0);// inherited from Searcher
+            String start = searchable.getInitialState().ToString();
+            //Console.WriteLine(start);
+
             HashSet<MazeState<T>> closed = new HashSet<MazeState<T>>();
 
             while (OpenListSize > 0)
@@ -38,12 +42,28 @@ namespace SearchAlgorithmsLib
 
 
                 List<MazeState<T>> succerssors = searchable.getAllPossibleStates(curr);
+                //Console.WriteLine("Current Node: " + curr.ToString());
+                //Console.Write("Number of successors :" + succerssors.Count());
+                foreach (MazeState<T> suc in succerssors)
+                {
+                   
+                    //Console.WriteLine(suc.ToString());
+                    
+                }
 
                 foreach (MazeState<T> suc in succerssors)
                 {
+                    if (suc.Equals(searchable.getGoalState()))
+                    {
+                        suc.setCameFrom(curr);
+                        sol = BackTrace(suc); // private method, back traces through the parents calling the delegated method, returns a list of states with n as a parent
+                        return sol;
+
+                    }
+                    //Console.WriteLine(suc.ToString());
                     if (!closed.Contains(suc) && !IsContaining(suc))
                     {
-                        suc.setCameFrom(curr); // already done by getSuccessors
+                        //suc.setCameFrom(curr); // already done by getSuccessors
                         AddToOpenList(suc, curr.GetCost() + 1);
                     }
                     else

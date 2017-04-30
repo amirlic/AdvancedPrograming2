@@ -56,7 +56,8 @@ namespace SearchAlgorithmsLib
                     if (!closed.Contains(suc))
                     {
 
-
+                        closed.Add(suc);
+                        IncNumberOfNodesEvaluated();
                         if (suc.Equals(goal))
                         {
                             sol = BackTrace(suc);
@@ -65,10 +66,10 @@ namespace SearchAlgorithmsLib
                         //I check that the successor is not null first because it is more efficient
                         //because if the successor isn't null than we will not check the second rule which depends on the
                         //first
-                        if (suc.CameFrom() == null && suc != searchable.getInitialState())
-                        {
-                            suc.setCameFrom(curr);
-                        }
+                        //if (suc.CameFrom() == null && suc != searchable.getInitialState())
+                        //{
+                        //    suc.setCameFrom(curr);
+                        //}
 
                         depth.Push(suc);
                     }

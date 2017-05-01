@@ -12,6 +12,11 @@
             <ColumnDefinition Width="25*"/>
             <ColumnDefinition Width="484*"/>
         </Grid.ColumnDefinitions>
+        <Button x:Name="SinglePleyerButton" Content="Single pleyer" Grid.Column="2" Height="37" Margin="450,242,-121,-68" VerticalAlignment="Top" RenderTransformOrigin="0.373,-0.2" HorizontalAlignment="Left" Width="155"/>
+        <Button x:Name="MultButton" Grid.ColumnSpan="3" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="MultiPleyerButton" Content="Multi player" Grid.Column="2" HorizontalAlignment="Left" Height="38" Margin="450,321,-121,-148" VerticalAlignment="Top" Width="155"/>
+        <Button x:Name="SettingButton" Content="Setting" Grid.Column="2" HorizontalAlignment="Left" Height="40" Margin="450,401,-121,-230" VerticalAlignment="Top" Width="155"/>
+        <Image x:Name="image" Grid.Column="2" HorizontalAlignment="Left" Height="100" Margin="292,198,0,-87" VerticalAlignment="Top" Width="100" RenderTransformOrigin="-0.1,0.1"/>
 
     </Grid>
 </Window>

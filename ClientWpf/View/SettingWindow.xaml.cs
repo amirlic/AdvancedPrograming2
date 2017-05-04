@@ -22,17 +22,16 @@ namespace ClientWpf.View
     public partial class SettingsWindow : Window
     {
         private SettingsViewModel vm;
-        private MainWindow mainWindow;
 
         public SettingsWindow(ApplicationSettingsModel settingModel)
         {
             InitializeComponent();
-            vm = new SettingsViewModel(settingModel);
-            this.DataContext = vm;
+            this.vm = new SettingsViewModel(settingModel);
+            this.DataContext = this.vm;
         }
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
-            vm.SaveSettings();
+            this.vm.SaveSettings();
             MainWindow win = (MainWindow)Application.Current.MainWindow;
             win.Show();
             this.Close();

@@ -8,10 +8,16 @@
         Title="SettingWindow" Height="300" Width="300">
     <Grid>
         <Grid.RowDefinitions>
-            
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            
+            <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <TextBlock>Server IP:</TextBlock>
         <TextBox x:Name="txtIP" Grid.Column="1" Text="{Binding ServerIP}"></TextBox>
@@ -22,10 +28,16 @@
         <TextBlock Grid.Row="3">Maze columns:</TextBlock>
         <TextBox x:Name="txtCols" Grid.Row="3" Grid.Column="2" Text="{Binding MazeCols}"></TextBox>
         <TextBlock Grid.Row="4">Search algorithm:</TextBlock>
-        <ComboBox x:Name="cboSearchAlgo" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left"
-            SelectedIndex="{Binding SearchAlgorithm}" IsEditable="False">
+        <ComboBox x:Name="cboSearchAlgo" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left"
+            SelectedIndex="{Binding SearchAlgorithm}" IsEditable="False" Width="42">
             <ComboBoxItem>BFS</ComboBoxItem>
             <ComboBoxItem>DFS</ComboBoxItem>
         </ComboBox>
+        <Canvas Grid.Row="5">
+            <Button x:Name="btnCencel" Canvas.Left="150" Canvas.Bottom="10"
+             Padding="5" Click="btnCencel_Click">Cencel</Button>
+            <Button x:Name="btnOK" Canvas.Right="10" Canvas.Bottom="10" Width="50"
+             Padding="5" Click="btnOK_Click">OK</Button>
+        </Canvas>
     </Grid>
 </Window>

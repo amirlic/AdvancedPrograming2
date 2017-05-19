@@ -13,9 +13,9 @@ namespace ClientWpf.ViewModel
     public class SettingsViewModel : ViewModel
     {
         private ISettingsModel model;
-        public SettingsViewModel(ISettingsModel model)
+        public SettingsViewModel()
         {
-            this.model = model;
+            this.model = new ApplicationSettingsModel();
         }
         public string ServerIP
         {

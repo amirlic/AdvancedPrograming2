@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ClientWpf.View;
 
 namespace ClientWpf
 {
@@ -23,6 +24,24 @@ namespace ClientWpf
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Single_OnClick(object sender, RoutedEventArgs e)
+        {
+            SinglePlayerMenu single_menu = new SinglePlayerMenu();
+            single_menu.ShowDialog();
+        }
+
+        private void Multi_OnClick(object sender, RoutedEventArgs e)
+        {
+            MultiPlayerMenu multi_menu = new MultiPlayerMenu();
+            multi_menu.ShowDialog();
+        }
+
+        private void Setting_OnClick(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow setting_menu = new SettingsWindow();
+            setting_menu.ShowDialog();
         }
     }
 }

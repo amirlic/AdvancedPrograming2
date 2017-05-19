@@ -23,10 +23,10 @@ namespace ClientWpf.View
     {
         private SettingsViewModel vm;
 
-        public SettingsWindow(ApplicationSettingsModel settingModel)
+        public SettingsWindow()
         {
             InitializeComponent();
-            this.vm = new SettingsViewModel(settingModel);
+            this.vm = new SettingsViewModel();
             this.DataContext = this.vm;
         }
         private void btnOK_Click(object sender, RoutedEventArgs e)

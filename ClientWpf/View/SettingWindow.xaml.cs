@@ -29,6 +29,7 @@ namespace ClientWpf.View
             this.vm = new SettingsViewModel();
             this.DataContext = this.vm;
         }
+
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
             this.vm.SaveSettings();
@@ -36,6 +37,7 @@ namespace ClientWpf.View
             win.Show();
             this.Close();
         }
+
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             MainWindow win = (MainWindow)Application.Current.MainWindow;

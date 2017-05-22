@@ -25,6 +25,6 @@
         <TextBox x:Name="txtCols" Grid.Row="2" Grid.Column="2" Padding="3"
     Margin="3"></TextBox>
         <Button x:Name="btnStart" Grid.Row="3" HorizontalAlignment="Center"
-    Grid.ColumnSpan="2" Click="btnStart_Click" Margin="5" Padding="5">Start Game</Button>
+    Grid.ColumnSpan="2" Click="btnStart_Click"  Margin="5" Padding="5">Start Game</Button>
     </Grid>
 </UserControl>

@@ -89,6 +89,9 @@
     <Compile Include="View\SettingWindow.xaml.cs">
       <DependentUpon>SettingWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SinglePlayerGameWindow.xaml.cs">
+      <DependentUpon>SinglePlayerGameWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SinglePlayerMenu.xaml.cs">
       <DependentUpon>SinglePlayerMenu.xaml</DependentUpon>
     </Compile>
@@ -117,6 +120,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SettingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SinglePlayerGameWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

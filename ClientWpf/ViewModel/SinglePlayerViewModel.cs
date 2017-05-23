@@ -15,7 +15,8 @@ namespace ClientWpf.ViewModel
         private ISinglePlayerModel model;
         public SinglePlayerViewModel()
         {
-            this.model = new SinglePlayerModel();
+            //we pass 1 as the game kind because it is a single player game
+            this.model = new SinglePlayerModel(1);
         }
 
         public string MazeName

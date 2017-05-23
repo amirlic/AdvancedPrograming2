@@ -66,6 +66,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Client.cs" />
     <Compile Include="Model\ApplicationSettingsModel.cs" />
     <Compile Include="Model\IMultiPlayerModel.cs" />
     <Compile Include="Model\ISettingModel.cs" />
@@ -79,6 +80,9 @@
     <Compile Include="ViewModel\SinglePlayerViewModel.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
     <Compile Include="ViewModel\ViewModelDeskTopApp.cs" />
+    <Compile Include="View\Controls\mazeBoardControl.xaml.cs">
+      <DependentUpon>mazeBoardControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Controls\MenuUserControl.xaml.cs">
       <DependentUpon>MenuUserControl.xaml</DependentUpon>
     </Compile>
@@ -103,6 +107,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Controls\mazeBoardControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Controls\MenuUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

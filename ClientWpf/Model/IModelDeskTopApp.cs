@@ -29,7 +29,6 @@ namespace ClientWpf.Model
         void RestartGame();
         void MultiPlayerGame();
         void AskForHint();
-        void MultiplayerGame();
         void MoveUp();
         void MoveDown();
         void MoveRight();

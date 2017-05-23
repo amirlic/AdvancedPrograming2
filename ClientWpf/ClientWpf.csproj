@@ -71,15 +71,14 @@
     <Compile Include="Model\ISettingModel.cs" />
     <Compile Include="Model\ISinglePlayerModel.cs" />
     <Compile Include="Model\MultiPlayerModel.cs" />
+    <Compile Include="Model\SinglePlayerMazeModel.cs" />
     <Compile Include="Model\SinglePlayerModel.cs" />
     <Compile Include="ViewModel\MultiPlayerViewModel.cs" />
     <Compile Include="ViewModel\SettingViewModel.cs" />
+    <Compile Include="ViewModel\SinglePlayerMazeViewModel.cs" />
     <Compile Include="ViewModel\SinglePlayerViewModel.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
     <Compile Include="ViewModel\ViewModelDeskTopApp.cs" />
-    <Compile Include="View\Controls\MazeBoard.xaml.cs">
-      <DependentUpon>MazeBoard.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Controls\MenuUserControl.xaml.cs">
       <DependentUpon>MenuUserControl.xaml</DependentUpon>
     </Compile>
@@ -88,9 +87,6 @@
     </Compile>
     <Compile Include="View\SettingWindow.xaml.cs">
       <DependentUpon>SettingWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\SinglePlayerGameWindow.xaml.cs">
-      <DependentUpon>SinglePlayerGameWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SinglePlayerMenu.xaml.cs">
       <DependentUpon>SinglePlayerMenu.xaml</DependentUpon>
@@ -107,10 +103,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\Controls\MazeBoard.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\Controls\MenuUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -120,10 +112,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SettingWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\SinglePlayerGameWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,6 +150,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ClientProj\ClientProj.csproj">
+      <Project>{b030f3d5-c475-4731-8d0a-103ed07ffd23}</Project>
+      <Name>ClientProj</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVC\MVC.csproj">
+      <Project>{62558bf4-c130-4443-ac3c-e065bf62eac7}</Project>
+      <Name>MVC</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SearchAlgorithmsLib\SearchAlgorithmsLib.csproj">
       <Project>{c112ec2b-36bb-4365-927b-8b8f65c8639e}</Project>
       <Name>SearchAlgorithmsLib</Name>

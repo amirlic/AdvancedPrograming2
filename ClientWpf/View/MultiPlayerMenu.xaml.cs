@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ClientWpf.ViewModel;
 
 namespace ClientWpf.View
 {
@@ -19,9 +20,13 @@ namespace ClientWpf.View
     /// </summary>
     public partial class MultiPlayerMenu : Window
     {
+        private MultiPlayerViewModel vm;
+
         public MultiPlayerMenu()
         {
             InitializeComponent();
+            vm = new MultiPlayerViewModel();
+            DataContext = vm;
         }
 
         private void MenuUserControl_Loaded(object sender, RoutedEventArgs e)

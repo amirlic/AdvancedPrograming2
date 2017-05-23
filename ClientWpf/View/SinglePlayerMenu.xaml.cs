@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ClientWpf.ViewModel;
 
 namespace ClientWpf.View
 {
@@ -19,27 +20,17 @@ namespace ClientWpf.View
     /// </summary>
     public partial class SinglePlayerMenu : Window
     {
+        private SinglePlayerViewModel vm;
         public SinglePlayerMenu()
         {
             InitializeComponent();
-        }
-
-        private void btnOK_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow win = (MainWindow)Application.Current.MainWindow;
-            win.Show();
-        }
-
-        private void btnCancel_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow win = (MainWindow)Application.Current.MainWindow;
-            win.Show();
+            vm = new SinglePlayerViewModel();
+            DataContext = vm;
         }
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow win = (MainWindow)Application.Current.MainWindow;
-            win.Show();
+            
         }
     }
 }

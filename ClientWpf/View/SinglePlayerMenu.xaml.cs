@@ -31,6 +31,8 @@ namespace ClientWpf.View
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
             vm.Game();
+            SinglePlayerMaze win = new SinglePlayerMaze();
+            win.ShowDialog();
         }
     }
 }

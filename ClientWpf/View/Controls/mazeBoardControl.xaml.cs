@@ -37,7 +37,7 @@ namespace ClientWpf.View.Controls
 
         // Using a DependencyProperty as the backing store for rows.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty rowsProperty =
-            DependencyProperty.Register("rows", typeof(int), typeof(SinglePlayerViewModel), new PropertyMetadata(0));
+            DependencyProperty.Register("rows", typeof(int), typeof(MazeBoardControl), new PropertyMetadata(0));
         #endregion
 
         #region cols
@@ -51,7 +51,7 @@ namespace ClientWpf.View.Controls
 
         // Using a DependencyProperty as the backing store for cols.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty colsProperty =
-            DependencyProperty.Register("cols", typeof(int), typeof(SinglePlayerViewModel), new PropertyMetadata(0));
+            DependencyProperty.Register("cols", typeof(int), typeof(MazeBoardControl), new PropertyMetadata(0));
         #endregion
 
         public void printMaze()
@@ -79,7 +79,6 @@ namespace ClientWpf.View.Controls
             }
             p1.Data = GG1;
             myCanvas.Children.Add(p1);
-
         }
     }
 }

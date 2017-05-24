@@ -56,8 +56,8 @@ namespace ClientWpf
             string answer = "";
             bool endGame = false;
 
-            while (true)
-            {
+            //while (true)
+            //{
                 
                 //creating the string to send to the server in order to receive the new maze
                 request = "generate " + this.nameOfMaze + " " + this.noRows + " " + this.noCol;
@@ -123,7 +123,7 @@ namespace ClientWpf
                     client.Close();
                 }
             }
-        }
+        //}
         public Maze getMaze()
         {
             if(this.maze == null)

@@ -68,20 +68,19 @@
     </ApplicationDefinition>
     <Compile Include="Client.cs" />
     <Compile Include="Model\ApplicationSettingsModel.cs" />
+    <Compile Include="Model\IGameModel.cs" />
     <Compile Include="Model\IMultiPlayerModel.cs" />
     <Compile Include="Model\ISettingModel.cs" />
     <Compile Include="Model\ISinglePlayerModel.cs" />
     <Compile Include="Model\MultiPlayerModel.cs" />
-    <Compile Include="Model\SinglePlayerMazeModel.cs" />
     <Compile Include="Model\SinglePlayerModel.cs" />
     <Compile Include="ViewModel\MultiPlayerViewModel.cs" />
     <Compile Include="ViewModel\SettingViewModel.cs" />
-    <Compile Include="ViewModel\SinglePlayerMazeViewModel.cs" />
     <Compile Include="ViewModel\SinglePlayerViewModel.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
     <Compile Include="ViewModel\ViewModelDeskTopApp.cs" />
-    <Compile Include="View\Controls\mazeBoardControl.xaml.cs">
-      <DependentUpon>mazeBoardControl.xaml</DependentUpon>
+    <Compile Include="View\Controls\MazeBoardControl.xaml.cs">
+      <DependentUpon>MazeBoardControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Controls\MenuUserControl.xaml.cs">
       <DependentUpon>MenuUserControl.xaml</DependentUpon>
@@ -91,6 +90,9 @@
     </Compile>
     <Compile Include="View\SettingWindow.xaml.cs">
       <DependentUpon>SettingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SinglePlayerMaze.xaml.cs">
+      <DependentUpon>SinglePlayerMaze.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SinglePlayerMenu.xaml.cs">
       <DependentUpon>SinglePlayerMenu.xaml</DependentUpon>
@@ -107,7 +109,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\Controls\mazeBoardControl.xaml">
+    <Page Include="View\Controls\MazeBoardControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -120,6 +122,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SettingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SinglePlayerMaze.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

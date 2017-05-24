@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace ClientWpf.Model
 {
-    public class IMultiPlayerModel
+    public interface IMultiPlayerModel : IGameModel
     {
-        public int MazeRows { get; set; }
-        public int MazeCols { get; set; }
-        public string MazeName { get; set; }
-        public List<string> ListOfGames { get; set; }
+        List<string> ListOfGames { get; set; }
     }
 }

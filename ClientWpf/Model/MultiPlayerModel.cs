@@ -8,9 +8,16 @@ namespace ClientWpf.Model
 {
     public class MultiPlayerModel : IMultiPlayerModel
     {
+        private bool startGame = false;
+
         public int MazeRows { get; set; }
         public int MazeCols { get; set; }
         public string MazeName { get; set; }
         public List<string> ListOfGames { get; set; }
+
+        public void StartGame()
+        {
+            this.startGame = true;
+        }
     }
 }

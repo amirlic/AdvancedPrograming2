@@ -47,5 +47,11 @@ namespace ClientWpf.ViewModel
                 NotifyPropertyChanged("MazeCols");
             }
         }
+
+        public void Game()
+        {
+            this.model.StartGame();
+        }
+
     }
 }

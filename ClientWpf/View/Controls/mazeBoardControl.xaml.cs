@@ -17,11 +17,11 @@ using ClientWpf.ViewModel;
 namespace ClientWpf.View.Controls
 {
     /// <summary>
-    /// Interaction logic for mazeBoardControl.xaml
+    /// Interaction logic for MazeBoardControl.xaml
     /// </summary>
-    public partial class mazeBoardControl : UserControl
+    public partial class MazeBoardControl : UserControl
     {
-        public mazeBoardControl()
+        public MazeBoardControl()
         {
             InitializeComponent();
         }
@@ -30,7 +30,7 @@ namespace ClientWpf.View.Controls
 
         public int rows
         {
-           
+
             get { return (int)GetValue(rowsProperty); }
             set { SetValue(rowsProperty, value); }
         }
@@ -54,18 +54,32 @@ namespace ClientWpf.View.Controls
             DependencyProperty.Register("cols", typeof(int), typeof(SinglePlayerViewModel), new PropertyMetadata(0));
         #endregion
 
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
         public void printMaze()
         { }
         private void myCanvas_Loaded(object sender, RoutedEventArgs e)
         {
-           
-            Rectangle[,] mat = new Rectangle[rows, cols];
+            int noOfRecsInRow = 600 / rows;
+            int noOfRecsInCol = 600 / cols;
+            Path p1 = new Path();
+
+            GeometryGroup GG1 = new GeometryGroup();
+            Rect[,] mat = new Rect[rows, cols];
+            for (int i = 0; i < noOfRecsInRow; i++)
+            {
+                for (int j = 0; j < noOfRecsInCol; j++)
+                {
+                    RectangleGeometry recG1 = new RectangleGeometry();
+                    Rect a = new Rect();
+                    a.Height = noOfRecsInCol;
+                    a.Width = noOfRecsInRow;
+                    a.Location = new Point(i, j);
+                    recG1.Rect = a;
+                    GG1.Children.Add(recG1);
+                }
+            }
+            p1.Data = GG1;
+            myCanvas.Children.Add(p1);
 
         }
-
-}
+    }
 }

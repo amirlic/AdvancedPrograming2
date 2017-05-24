@@ -24,7 +24,5 @@
         <TextBlock Grid.Row="2" Padding="3" Margin="3">Maze columns:</TextBlock>
         <TextBox x:Name="txtCols" Grid.Row="2" Grid.Column="2" Padding="3"
     Margin="3" Text="{Binding MazeCols}"></TextBox>
-        <Button x:Name="btnStart" Grid.Row="3" HorizontalAlignment="Center"
-    Grid.ColumnSpan="2" Click="btnStart_Click"  Margin="5" Padding="5">Start Game</Button>
     </Grid>
 </UserControl>

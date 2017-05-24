@@ -60,7 +60,7 @@ namespace ClientWpf
             {
                 
                 //creating the string to send to the server in order to receive the new maze
-                request = "Generate " + this.nameOfMaze + " " + this.noRows + " " + this.noCol;
+                request = "generate " + this.nameOfMaze + " " + this.noRows + " " + this.noCol;
                 
 
                 this.client = new TcpClient();

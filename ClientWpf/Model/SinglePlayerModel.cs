@@ -20,10 +20,7 @@ namespace ClientWpf.Model
         {
             this.gameKind = gameKind;
             mazeName = "a";
-            mazeRows = 3;
-            mazeCols = 3;
         }
-
 
         public string MazeName
         {
@@ -37,22 +34,13 @@ namespace ClientWpf.Model
 
         public int MazeRows
         {
-            get { return mazeRows; }
-            set
-            {
-                mazeRows = value;
-                NotifyPropertyChanged("MazeRows");
-            }
+            get { return Properties.Settings.Default.MazeRows; }
+            set { Properties.Settings.Default.MazeRows = value; }
         }
-
         public int MazeCols
         {
-            get { return mazeCols; }
-            set
-            {
-                mazeCols = value;
-                NotifyPropertyChanged("MazeCols");
-            }
+            get { return Properties.Settings.Default.MazeCols; }
+            set { Properties.Settings.Default.MazeCols = value; }
         }
 
         public void StartGame()

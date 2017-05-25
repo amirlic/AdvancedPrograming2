@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClientWpf.Model
 {
-    public class MultiPlayerModel : IMultiPlayerModel
+    public class MultiPlayerModel : GameModel
     {
         private bool startGame = false;
 

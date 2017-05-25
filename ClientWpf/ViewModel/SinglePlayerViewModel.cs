@@ -12,7 +12,7 @@ namespace ClientWpf.ViewModel
 {
     class SinglePlayerViewModel : ViewModel
     {
-        private ISinglePlayerModel model;
+        private SinglePlayerModel model;
         public SinglePlayerViewModel()
         {
             //we pass 1 as the game kind because it is a single player game

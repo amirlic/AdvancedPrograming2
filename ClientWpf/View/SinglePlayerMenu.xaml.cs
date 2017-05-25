@@ -34,5 +34,7 @@ namespace ClientWpf.View
             SinglePlayerMaze win = new SinglePlayerMaze();
             win.ShowDialog();
         }
+
+
     }
 }

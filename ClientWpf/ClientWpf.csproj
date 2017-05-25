@@ -68,10 +68,8 @@
     </ApplicationDefinition>
     <Compile Include="Client.cs" />
     <Compile Include="Model\ApplicationSettingsModel.cs" />
-    <Compile Include="Model\IGameModel.cs" />
-    <Compile Include="Model\IMultiPlayerModel.cs" />
+    <Compile Include="Model\GameModel.cs" />
     <Compile Include="Model\ISettingModel.cs" />
-    <Compile Include="Model\ISinglePlayerModel.cs" />
     <Compile Include="Model\MultiPlayerModel.cs" />
     <Compile Include="Model\SinglePlayerModel.cs" />
     <Compile Include="ViewModel\MultiPlayerViewModel.cs" />

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClientWpf.Model
 {
-    public class SinglePlayerModel : ISinglePlayerModel
+    public class SinglePlayerModel : GameModel
     {
         private Client tcp;
         private int gameKind;
@@ -19,9 +19,35 @@ namespace ClientWpf.Model
         }
 
 
-        public int MazeRows { get; set; }
-        public int MazeCols { get; set; }
-        public string MazeName { get; set; }
+        public string MazeName
+        {
+            get { return MazeName; }
+            set
+            {
+                MazeName = value;
+                NotifyPropertyChanged("MazeName");
+            }
+        }
+
+        public int MazeRows
+        {
+            get { return MazeRows; }
+            set
+            {
+                MazeRows = value;
+                NotifyPropertyChanged("MazeRows");
+            }
+        }
+
+        public int MazeCols
+        {
+            get { return MazeCols; }
+            set
+            {
+                MazeCols = value;
+                NotifyPropertyChanged("MazeCols");
+            }
+        }
 
         public void StartGame()
         {

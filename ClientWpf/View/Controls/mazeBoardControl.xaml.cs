@@ -24,61 +24,101 @@ namespace ClientWpf.View.Controls
         public MazeBoardControl()
         {
             InitializeComponent();
+            //myCanvas_Loaded();
         }
-        #region rows
+        //     #region rows
+        //
+        //
+        //      public int rows
+        //    {
+        //
+        //           get { return (int)GetValue(rowsProperty); }
+        //          set { SetValue(rowsProperty, value); }
+        //     }
+        //
+        //       // Using a DependencyProperty as the backing store for rows.  This enables animation, styling, binding, etc...
+        //      public static readonly DependencyProperty rowsProperty =
+        //         DependencyProperty.Register("rows", typeof(int), typeof(MazeBoardControl), new PropertyMetadata(0));
+        //    #endregion
 
 
-        public int rows
+
+
+        public int MazeRows
         {
-
-            get { return (int)GetValue(rowsProperty); }
-            set { SetValue(rowsProperty, value); }
+            get { return (int)GetValue(MazeRowsProperty); }
+            set { SetValue(MazeRowsProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for rows.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty rowsProperty =
-            DependencyProperty.Register("rows", typeof(int), typeof(MazeBoardControl), new PropertyMetadata(0));
-        #endregion
-
-        #region cols
+        // Using a DependencyProperty as the backing store for MazeRows.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MazeRowsProperty =
+            DependencyProperty.Register("MazeRows", typeof(int), typeof(MazeBoardControl), new PropertyMetadata(3));
 
 
-        public int cols
+
+        public int MazeCols
         {
-            get { return (int)GetValue(colsProperty); }
-            set { SetValue(colsProperty, value); }
+            get { return (int)GetValue(MazeColsProperty); }
+            set { SetValue(MazeColsProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for cols.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty colsProperty =
-            DependencyProperty.Register("cols", typeof(int), typeof(MazeBoardControl), new PropertyMetadata(0));
-        #endregion
+        // Using a DependencyProperty as the backing store for MazeCols.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MazeColsProperty =
+            DependencyProperty.Register("MazeCols", typeof(int), typeof(MazeBoardControl), new PropertyMetadata(3));
+
+
+
+        public string MazeName
+        {
+            get { return (string)GetValue(MazeNameProperty); }
+            set { SetValue(MazeNameProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MazeName.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MazeNameProperty =
+            DependencyProperty.Register("MazeName", typeof(string), typeof(MazeBoardControl), new PropertyMetadata("maze"));
+
+
+
+
+        //#region cols
+        //
+        //
+        //       public int MazeCols
+        //      {
+        //         get { return (int)GetValue(colsProperty); }
+        //        set { SetValue(colsProperty, value); }
+        //   }
+        //
+        //       // Using a DependencyProperty as the backing store for cols.  This enables animation, styling, binding, etc...
+        //      public static readonly DependencyProperty colsProperty =
+        //         DependencyProperty.Register("cols", typeof(int), typeof(MazeBoardControl), new PropertyMetadata(0));
+        //    #endregion
 
         public void printMaze()
         { }
         private void myCanvas_Loaded(object sender, RoutedEventArgs e)
         {
-            int noOfRecsInRow = 600 / rows;
-            int noOfRecsInCol = 600 / cols;
-            Path p1 = new Path();
+            int noOfRecsInRow = 600 / MazeRows;
+            int noOfRecsInCol = 600 / MazeCols;
+            System.Console.WriteLine("{0},{1}", noOfRecsInRow, noOfRecsInCol);
 
-            GeometryGroup GG1 = new GeometryGroup();
-            Rect[,] mat = new Rect[rows, cols];
             for (int i = 0; i < noOfRecsInRow; i++)
             {
                 for (int j = 0; j < noOfRecsInCol; j++)
                 {
-                    RectangleGeometry recG1 = new RectangleGeometry();
-                    Rect a = new Rect();
-                    a.Height = noOfRecsInCol;
-                    a.Width = noOfRecsInRow;
-                    a.Location = new Point(i, j);
-                    recG1.Rect = a;
-                    GG1.Children.Add(recG1);
+
+                    Rectangle rec = new Rectangle();
+                    rec.Height = noOfRecsInCol;
+                    rec.Width = noOfRecsInRow;
+                    if (j > 3) { rec.Fill = new SolidColorBrush(Colors.Beige); }
+                    else { rec.Fill = new SolidColorBrush(Colors.Black); }
+                    Canvas.SetTop(rec, i * noOfRecsInCol);
+                    Canvas.SetLeft(rec, j * noOfRecsInRow);
+                    myCanvas.Children.Add(rec);
+
                 }
             }
-            p1.Data = GG1;
-            myCanvas.Children.Add(p1);
         }
     }
 }

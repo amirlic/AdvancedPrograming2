@@ -12,7 +12,7 @@ namespace ClientWpf.ViewModel
 {
     public class MultiPlayerViewModel : ViewModel
     {
-        private IMultiPlayerModel model;
+        private MultiPlayerModel model;
         public MultiPlayerViewModel()
         {
             this.model = new MultiPlayerModel();

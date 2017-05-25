@@ -8,7 +8,6 @@
         Title="SinglePlayerMenu" Height="300" Width="300">
     <Grid>
         <controls:MenuUserControl>
-
         </controls:MenuUserControl>
         <Button x:Name="btnSingleStart" HorizontalAlignment="Center" Click="btnStart_Click"  Margin="105,123,117,109" Padding="5">Start Game</Button>
     </Grid>

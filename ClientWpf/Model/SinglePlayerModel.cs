@@ -60,5 +60,25 @@ namespace ClientWpf.Model
             //this.otherLocation;
             this.finishLocation = maze.GoalPos;
         }
+
+        public void Right()
+        {
+            this.myLocation = new Position(this.myLocation.Row, this.myLocation.Col + 1);
+        }
+
+        public void Left()
+        {
+            this.myLocation = new Position(this.myLocation.Row, this.myLocation.Col - 1);
+        }
+
+        public void Down()
+        {
+            this.myLocation = new Position(this.myLocation.Row - 1, this.myLocation.Col);
+        }
+
+        public void Up()
+        {
+            this.myLocation = new Position(this.myLocation.Row + 1, this.myLocation.Col);
+        }
     }
 }

@@ -82,22 +82,22 @@ namespace ClientWpf.ViewModel
 
         public void MoveRight()
         {
-            this.MyLocation = new Position(this.MyLocation.Row, this.MyLocation.Col + 1);
+            this.model.Right();
         }
 
         public void MoveLeft()
         {
-            this.MyLocation = new Position(this.MyLocation.Row, this.MyLocation.Col - 1);
+            this.model.Left();
         }
 
         public void MoveDown()
         {
-            this.MyLocation = new Position(this.MyLocation.Row - 1, this.MyLocation.Col);
+            this.model.Down();
         }
 
         public void MoveUp()
         {
-            this.MyLocation = new Position(this.MyLocation.Row + 1, this.MyLocation.Col);
+            this.model.Up();
         }
 
     }

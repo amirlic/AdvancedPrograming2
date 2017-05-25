@@ -10,41 +10,47 @@ namespace ClientWpf.Model
     {
         private Client tcp;
         private int gameKind;
+        string mazeName;
+        int mazeRows , mazeCols;
+
         /**
           * @param gameKind an int indicating the game kind: 1 for single player and 2 for multiplayer
           **/
         public SinglePlayerModel(int gameKind)
         {
             this.gameKind = gameKind;
+            mazeName = "a";
+            mazeRows = 3;
+            mazeCols = 3;
         }
 
 
         public string MazeName
         {
-            get { return MazeName; }
+            get { return mazeName; }
             set
             {
-                MazeName = value;
+                mazeName = value;
                 NotifyPropertyChanged("MazeName");
             }
         }
 
         public int MazeRows
         {
-            get { return MazeRows; }
+            get { return mazeRows; }
             set
             {
-                MazeRows = value;
+                mazeRows = value;
                 NotifyPropertyChanged("MazeRows");
             }
         }
 
         public int MazeCols
         {
-            get { return MazeCols; }
+            get { return mazeCols; }
             set
             {
-                MazeCols = value;
+                mazeCols = value;
                 NotifyPropertyChanged("MazeCols");
             }
         }

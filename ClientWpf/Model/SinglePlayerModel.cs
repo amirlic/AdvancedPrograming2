@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MazeLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,11 @@ namespace ClientWpf.Model
     {
         private Client tcp;
         private int gameKind;
-        string mazeName;
-        int mazeRows , mazeCols;
+        private string mazeName;
+        private int mazeRows , mazeCols;
+        private Position myLocation;
+        private Position otherLocation;
+        private Position finishLocation;
 
         /**
           * @param gameKind an int indicating the game kind: 1 for single player and 2 for multiplayer
@@ -43,10 +47,18 @@ namespace ClientWpf.Model
             set { Properties.Settings.Default.MazeCols = value; }
         }
 
+        public Position MyLocation { get; set; }
+        public Position OtherLocation { get; set; }
+        public Position FinishLocation { get; set; }
+
         public void StartGame()
         {
             tcp = new Client(MazeName, MazeRows, MazeCols, gameKind);
             tcp.Start();
+            Maze maze = tcp.getMaze();
+            this.myLocation = maze.InitialPos;
+            //this.otherLocation;
+            this.finishLocation = maze.GoalPos;
         }
     }
 }

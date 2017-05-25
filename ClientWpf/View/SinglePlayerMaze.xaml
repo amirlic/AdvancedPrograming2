@@ -6,10 +6,11 @@
         xmlns:local="clr-namespace:ClientWpf.View" 
         xmlns:controls="clr-namespace:ClientWpf.View.Controls"
         mc:Ignorable="d"
-        Title="SinglePlayerMaze" Height="600" Width="600">
+        Title="SinglePlayerMaze" Height="600" Width="600" KeyDown="Window_KeyDown">
     <Canvas>
-        <controls:MazeBoardControl MazeRows="{Binding MazeRows}" MazeCols="{Binding MazeCols}">
-
+        <controls:MazeBoardControl MazeRows="{Binding MazeRows}" MazeCols="{Binding MazeCols}"
+                                   MyLocation="{Binding MyLocation}" OtherLocation="{Binding OtherLocation}"
+                                   FinishLocation="{Binding FinishLocation}">
         </controls:MazeBoardControl>
     </Canvas>
 </Window>

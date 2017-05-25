@@ -13,7 +13,7 @@ using MazeLib;
 
 namespace ClientWpf
 {
-    class Client
+    public class Client
     {
         //the socket to send and receive data to and from the server
         private TcpClient client;

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ClientWpf.ViewModel;
+using MazeLib;
 
 namespace ClientWpf.View.Controls
 {
@@ -78,7 +79,35 @@ namespace ClientWpf.View.Controls
         public static readonly DependencyProperty MazeNameProperty =
             DependencyProperty.Register("MazeName", typeof(string), typeof(MazeBoardControl), new PropertyMetadata("maze"));
 
+        public Position MyLocation
+        {
+            get { return (Position)GetValue(MyLocationProperty); }
+            set { SetValue(MyLocationProperty, value); }
+        }
 
+        // Using a DependencyProperty as the backing store for MazeRows.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MyLocationProperty =
+            DependencyProperty.Register("MyLocation", typeof(int), typeof(MazeBoardControl), new PropertyMetadata(3));
+
+        public Position OtherLocation
+        {
+            get { return (Position)GetValue(OtherLocationProperty); }
+            set { SetValue(OtherLocationProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MazeRows.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty OtherLocationProperty =
+            DependencyProperty.Register("OtherLocation", typeof(int), typeof(MazeBoardControl), new PropertyMetadata(3));
+
+        public Position FinishLocation
+        {
+            get { return (Position)GetValue(FinishLocationProperty); }
+            set { SetValue(FinishLocationProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MazeRows.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty FinishLocationProperty =
+            DependencyProperty.Register("FinishLocation", typeof(int), typeof(MazeBoardControl), new PropertyMetadata(3));
 
 
         //#region cols

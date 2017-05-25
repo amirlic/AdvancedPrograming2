@@ -50,9 +50,54 @@ namespace ClientWpf.ViewModel
             }
         }
 
+        public Position MyLocation {
+            get { return model.MyLocation; }
+            set
+            {
+                model.MyLocation = value;
+                NotifyPropertyChanged("MyLocation");
+            }
+        }
+        public Position OtherLocation {
+            get { return model.OtherLocation; }
+            set
+            {
+                model.OtherLocation = value;
+                NotifyPropertyChanged("OtherLocation");
+            }
+        }
+        public Position FinishLocation {
+            get { return model.FinishLocation; }
+            set
+            {
+                model.FinishLocation = value;
+                NotifyPropertyChanged("FinishLocation");
+            }
+        }
+
         public void Game()
         {
             this.model.StartGame();
+        }
+
+        public void MoveRight()
+        {
+            this.MyLocation = new Position(this.MyLocation.Row, this.MyLocation.Col + 1);
+        }
+
+        public void MoveLeft()
+        {
+            this.MyLocation = new Position(this.MyLocation.Row, this.MyLocation.Col - 1);
+        }
+
+        public void MoveDown()
+        {
+            this.MyLocation = new Position(this.MyLocation.Row - 1, this.MyLocation.Col);
+        }
+
+        public void MoveUp()
+        {
+            this.MyLocation = new Position(this.MyLocation.Row + 1, this.MyLocation.Col);
         }
 
     }

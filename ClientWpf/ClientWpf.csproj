@@ -73,10 +73,12 @@
     <Compile Include="Model\GameModel.cs" />
     <Compile Include="Model\ISettingModel.cs" />
     <Compile Include="Model\MultiPlayerModel.cs" />
+    <Compile Include="Model\SinglePlayerMazeModel.cs" />
     <Compile Include="Model\SinglePlayerModel.cs" />
     <Compile Include="MultiPlayerClient.cs" />
     <Compile Include="ViewModel\MultiPlayerViewModel.cs" />
     <Compile Include="ViewModel\SettingViewModel.cs" />
+    <Compile Include="ViewModel\SinglePlayerMazeViewModel.cs" />
     <Compile Include="ViewModel\SinglePlayerViewModel.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
     <Compile Include="View\Controls\MazeBoardControl.xaml.cs">

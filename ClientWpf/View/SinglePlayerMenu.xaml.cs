@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ClientWpf.ViewModel;
+using MazeLib;
+using ClientWpf.View.Controls;
 
 namespace ClientWpf.View
 {
@@ -21,6 +23,8 @@ namespace ClientWpf.View
     public partial class SinglePlayerMenu : Window
     {
         private SinglePlayerViewModel vm;
+        private MenuUserControl us = new MenuUserControl();
+
         public SinglePlayerMenu()
         {
             InitializeComponent();
@@ -30,11 +34,10 @@ namespace ClientWpf.View
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            vm.Game();
-            SinglePlayerMaze win = new SinglePlayerMaze();
+            SinglePlayerMaze win = new SinglePlayerMaze(us.txtMazeName.Text ,int.Parse(us.txtRows.Text) 
+                ,int.Parse(us.txtCols.Text));
             win.ShowDialog();
         }
-
 
     }
 }

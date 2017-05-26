@@ -22,107 +22,42 @@ namespace ClientWpf.View.Controls
     /// </summary>
     public partial class MazeBoardControl : UserControl
     {
+
         public MazeBoardControl()
         {
             InitializeComponent();
             //myCanvas_Loaded();
         }
-        //     #region rows
-        //
-        //
-        //      public int rows
-        //    {
-        //
-        //           get { return (int)GetValue(rowsProperty); }
-        //          set { SetValue(rowsProperty, value); }
-        //     }
-        //
-        //       // Using a DependencyProperty as the backing store for rows.  This enables animation, styling, binding, etc...
-        //      public static readonly DependencyProperty rowsProperty =
-        //         DependencyProperty.Register("rows", typeof(int), typeof(MazeBoardControl), new PropertyMetadata(0));
-        //    #endregion
+
+             #region rows
+        
+        
+            public int MazeRows
+            {
+        
+                  get { return (int)GetValue(rowsProperty); }
+                  set { SetValue(rowsProperty, value); }
+            }
+        
+               // Using a DependencyProperty as the backing store for rows.  This enables animation, styling, binding, etc...
+              public static readonly DependencyProperty rowsProperty =
+              DependencyProperty.Register("rows", typeof(int), typeof(MazeBoardControl), new PropertyMetadata(10));
+            #endregion
 
 
-
-
-        public int MazeRows
-        {
-            get { return (int)GetValue(MazeRowsProperty); }
-            set { SetValue(MazeRowsProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for MazeRows.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty MazeRowsProperty =
-            DependencyProperty.Register("MazeRows", typeof(int), typeof(MazeBoardControl), new PropertyMetadata(3));
-
-
-
+        #region cols
+        
+        
         public int MazeCols
-        {
-            get { return (int)GetValue(MazeColsProperty); }
-            set { SetValue(MazeColsProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for MazeCols.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty MazeColsProperty =
-            DependencyProperty.Register("MazeCols", typeof(int), typeof(MazeBoardControl), new PropertyMetadata(3));
-
-
-
-        public string MazeName
-        {
-            get { return (string)GetValue(MazeNameProperty); }
-            set { SetValue(MazeNameProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for MazeName.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty MazeNameProperty =
-            DependencyProperty.Register("MazeName", typeof(string), typeof(MazeBoardControl), new PropertyMetadata("maze"));
-
-        public Position MyLocation
-        {
-            get { return (Position)GetValue(MyLocationProperty); }
-            set { SetValue(MyLocationProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for MazeRows.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty MyLocationProperty =
-            DependencyProperty.Register("MyLocation", typeof(int), typeof(MazeBoardControl), new PropertyMetadata(3));
-
-        public Position OtherLocation
-        {
-            get { return (Position)GetValue(OtherLocationProperty); }
-            set { SetValue(OtherLocationProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for MazeRows.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty OtherLocationProperty =
-            DependencyProperty.Register("OtherLocation", typeof(int), typeof(MazeBoardControl), new PropertyMetadata(3));
-
-        public Position FinishLocation
-        {
-            get { return (Position)GetValue(FinishLocationProperty); }
-            set { SetValue(FinishLocationProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for MazeRows.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty FinishLocationProperty =
-            DependencyProperty.Register("FinishLocation", typeof(int), typeof(MazeBoardControl), new PropertyMetadata(3));
-
-
-        //#region cols
-        //
-        //
-        //       public int MazeCols
-        //      {
-        //         get { return (int)GetValue(colsProperty); }
-        //        set { SetValue(colsProperty, value); }
-        //   }
-        //
-        //       // Using a DependencyProperty as the backing store for cols.  This enables animation, styling, binding, etc...
-        //      public static readonly DependencyProperty colsProperty =
-        //         DependencyProperty.Register("cols", typeof(int), typeof(MazeBoardControl), new PropertyMetadata(0));
-        //    #endregion
+           {
+                get { return (int)GetValue(colsProperty); }
+                set { SetValue(colsProperty, value); }
+           }
+        
+               // Using a DependencyProperty as the backing store for cols.  This enables animation, styling, binding, etc...
+              public static readonly DependencyProperty colsProperty =
+                 DependencyProperty.Register("cols", typeof(int), typeof(MazeBoardControl), new PropertyMetadata(10));
+            #endregion
 
         public void printMaze()
         { }

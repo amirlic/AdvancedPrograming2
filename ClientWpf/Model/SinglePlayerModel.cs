@@ -9,29 +9,21 @@ namespace ClientWpf.Model
 {
     public class SinglePlayerModel : GameModel
     {
-        private Client tcp;
-        private int gameKind;
-        private string mazeName;
-        private int mazeRows , mazeCols;
-        private Position myLocation;
-        private Position otherLocation;
-        private Position finishLocation;
-
+        private string name;
         /**
           * @param gameKind an int indicating the game kind: 1 for single player and 2 for multiplayer
           **/
-        public SinglePlayerModel(int gameKind)
+        public SinglePlayerModel()
         {
-            this.gameKind = gameKind;
-            mazeName = "a";
+            name = " ";
         }
 
         public string MazeName
         {
-            get { return mazeName; }
+            get { return name; }
             set
             {
-                mazeName = value;
+                name = value;
                 NotifyPropertyChanged("MazeName");
             }
         }
@@ -45,40 +37,6 @@ namespace ClientWpf.Model
         {
             get { return Properties.Settings.Default.MazeCols; }
             set { Properties.Settings.Default.MazeCols = value; }
-        }
-
-        public Position MyLocation { get; set; }
-        public Position OtherLocation { get; set; }
-        public Position FinishLocation { get; set; }
-
-        public void StartGame()
-        {
-            tcp = new Client(MazeName, MazeRows, MazeCols, gameKind);
-            tcp.Start();
-            Maze maze = tcp.getMaze();
-            this.myLocation = maze.InitialPos;
-            //this.otherLocation;
-            this.finishLocation = maze.GoalPos;
-        }
-
-        public void Right()
-        {
-            this.myLocation = new Position(this.myLocation.Row, this.myLocation.Col + 1);
-        }
-
-        public void Left()
-        {
-            this.myLocation = new Position(this.myLocation.Row, this.myLocation.Col - 1);
-        }
-
-        public void Down()
-        {
-            this.myLocation = new Position(this.myLocation.Row - 1, this.myLocation.Col);
-        }
-
-        public void Up()
-        {
-            this.myLocation = new Position(this.myLocation.Row + 1, this.myLocation.Col);
         }
     }
 }

@@ -16,8 +16,7 @@ namespace ClientWpf.ViewModel
 
         public SinglePlayerViewModel()
         {
-            //we pass 1 as the game kind because it is a single player game
-            this.model = new SinglePlayerModel(1);
+            this.model = new SinglePlayerModel();
         }
 
         public string MazeName
@@ -48,56 +47,6 @@ namespace ClientWpf.ViewModel
                 model.MazeCols = value;
                 NotifyPropertyChanged("MazeCols");
             }
-        }
-
-        public Position MyLocation {
-            get { return model.MyLocation; }
-            set
-            {
-                model.MyLocation = value;
-                NotifyPropertyChanged("MyLocation");
-            }
-        }
-        public Position OtherLocation {
-            get { return model.OtherLocation; }
-            set
-            {
-                model.OtherLocation = value;
-                NotifyPropertyChanged("OtherLocation");
-            }
-        }
-        public Position FinishLocation {
-            get { return model.FinishLocation; }
-            set
-            {
-                model.FinishLocation = value;
-                NotifyPropertyChanged("FinishLocation");
-            }
-        }
-
-        public void Game()
-        {
-            this.model.StartGame();
-        }
-
-        public void MoveRight()
-        {
-            this.model.Right();
-        }
-
-        public void MoveLeft()
-        {
-            this.model.Left();
-        }
-
-        public void MoveDown()
-        {
-            this.model.Down();
-        }
-
-        public void MoveUp()
-        {
-            this.model.Up();
         }
 
     }

@@ -24,22 +24,17 @@ namespace ClientWpf
         //the number of collumns for the maze to be generated
         private int noCol;
 
-        //an int indicating game kind: 1 for single player and 2 for multiplayer
-        private int gameKind;
-
         //the name of the maze to be generated
         private string nameOfMaze;
 
         private Maze maze;
 
-        public Client(string name, int rows, int cols, int gameKind)
+        public Client(string name, int rows, int cols)
         {
             this.noRows = rows;
             this.noCol = cols;
 
             this.nameOfMaze = name;
-
-            this.gameKind = gameKind;
 
             this.maze = null;
         }

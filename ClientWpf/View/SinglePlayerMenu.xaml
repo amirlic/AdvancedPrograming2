@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="SinglePlayerMenu" Height="300" Width="300">
     <Grid>
-        <controls:MenuUserControl>
+        <controls:MenuUserControl MazeName="{Binding MazeName}" MazeRows="{Binding MazeRows}" MazeCols="{Binding MazeCols}">
         </controls:MenuUserControl>
         <Button x:Name="btnSingleStart" HorizontalAlignment="Center" Click="btnStart_Click"  Margin="105,123,117,109" Padding="5">Start Game</Button>
     </Grid>

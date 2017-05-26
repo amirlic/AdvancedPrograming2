@@ -13,6 +13,9 @@ namespace ClientWpf.Model
 {
     public class ApplicationSettingsModel : ISettingsModel
     {
+        private int rows = 3;
+        private int cols = 3;
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
         {
@@ -30,35 +33,26 @@ namespace ClientWpf.Model
             set { Properties.Settings.Default.ServerPort = value; }
         }
 
-        public string MazeName
-        {
-            get { return MazeName; }
-            set
-            {
-                MazeName = value;
-                NotifyPropertyChanged("MazeName");
-            }
-        }
-
         public int MazeRows
         {
-            get { return MazeRows; }
+            get { return rows; }
             set
             {
-                MazeRows = value;
+                rows = value;
                 NotifyPropertyChanged("MazeRows");
             }
         }
 
         public int MazeCols
         {
-            get { return MazeCols; }
+            get { return cols; }
             set
             {
-                MazeCols = value;
+                cols = value;
                 NotifyPropertyChanged("MazeCols");
             }
         }
+
         public int SearchAlgorithm
         {
             get { return Properties.Settings.Default.SearchAlgorithm; }

@@ -34,8 +34,7 @@ namespace ClientWpf.View
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            SinglePlayerMaze win = new SinglePlayerMaze(us.txtMazeName.Text ,int.Parse(us.txtRows.Text) 
-                ,int.Parse(us.txtCols.Text));
+            SinglePlayerMaze win = new SinglePlayerMaze(vm.MazeRows,vm.MazeCols,vm.MazeName);
             win.ShowDialog();
         }
 

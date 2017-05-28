@@ -10,12 +10,16 @@ namespace ClientWpf.Model
     public class SinglePlayerModel : GameModel
     {
         private string name;
+        private int rows;
+        private int cols;
         /**
           * @param gameKind an int indicating the game kind: 1 for single player and 2 for multiplayer
           **/
         public SinglePlayerModel()
         {
             name = " ";
+            rows = 0;
+            cols = 0;
         }
 
         public string MazeName
@@ -30,13 +34,17 @@ namespace ClientWpf.Model
 
         public int MazeRows
         {
-            get { return Properties.Settings.Default.MazeRows; }
-            set { Properties.Settings.Default.MazeRows = value; }
+            get { return rows; }
+            set { rows = value;
+                NotifyPropertyChanged("MazeRows");
+            }
         }
         public int MazeCols
         {
-            get { return Properties.Settings.Default.MazeCols; }
-            set { Properties.Settings.Default.MazeCols = value; }
+            get { return cols; }
+            set {cols = value;
+                NotifyPropertyChanged("MazeCols");
+            }
         }
     }
 }

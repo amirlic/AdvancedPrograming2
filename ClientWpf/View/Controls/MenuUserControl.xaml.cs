@@ -30,7 +30,7 @@ namespace ClientWpf.View.Controls
         public int MazeRows
         {
             get { return (int)GetValue(MazeRowsProperty); }
-            set { SetValue(MazeRowsProperty, value); }
+            set { SetValue(MazeRowsProperty, value);}
         }
 
         // Using a DependencyProperty as the backing store for MazeRows.  This enables animation, styling, binding, etc...
